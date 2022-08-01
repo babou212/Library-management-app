@@ -2,6 +2,7 @@ package com.example.demo.bootstrap;
 
 import com.example.demo.model.Item;
 import com.example.demo.model.Loan;
+import com.example.demo.model.MediaType;
 import com.example.demo.model.User;
 import com.example.demo.repository.ItemRepo;
 import com.example.demo.repository.LoanRepo;
@@ -35,7 +36,7 @@ public class DataLoader implements CommandLineRunner {
 
         LocalDate year = LocalDate.of(1872, 7, 16);
         Item item1 = Item.builder().itemId(1L).barcode("34224234234").author("Oscar Wilde").title("something")
-                .releaseYear(year).mediaType("book").ISBN("sdf345345345345345").build();
+                .year(year).mediaType(MediaType.BOOK).ISBN("sdf345345345345345").build();
         itemRepo.save(item1);
     }
 }

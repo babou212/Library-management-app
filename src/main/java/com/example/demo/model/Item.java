@@ -29,10 +29,11 @@ public class Item implements Serializable {
     private String title;
 
     @Column(name = "release_year")
-    private LocalDate releaseYear;
+    private LocalDate year;
 
     @Column(name = "media_type")
-    private String mediaType;
+    @Enumerated(EnumType.STRING)
+    private MediaType mediaType;
 
     @Column(name = "ISBN")
     private String ISBN;
