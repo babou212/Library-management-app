@@ -1,4 +1,7 @@
 package com.example.demo.service;
 
-public interface ItemService {
+import com.example.demo.model.Item;
+
+public interface ItemService extends CrudService<Item, Long> {
+
 }

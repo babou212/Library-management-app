@@ -30,13 +30,15 @@ public class DataLoader implements CommandLineRunner {
 
         LocalDate currentDate = LocalDate.now();
         LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
-        Loan loan1 = Loan.builder().loanId(1L).barcode("345345345345345").issueDate(currentDate)
-                .dueDate(dueDate).userId(1L).build();
-        loanRepo.save(loan1);
+        Loan loan1 = Loan.builder().issueDate(currentDate)
+                .dueDate(dueDate).user(user1).build();
 
         LocalDate year = LocalDate.of(1872, 7, 16);
-        Item item1 = Item.builder().itemId(1L).barcode("34224234234").author("Oscar Wilde").title("something")
+        Item item1 = Item.builder().author("Oscar Wilde").title("something")
                 .year(year).mediaType(MediaType.BOOK).ISBN("sdf345345345345345").build();
         itemRepo.save(item1);
+
+        loan1.setItemId(item1);
+        loanRepo.save(loan1);
     }
 }

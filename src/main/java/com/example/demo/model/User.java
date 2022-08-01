@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.io.Serializable;
 @Builder
 @Entity
 @Table(name = "users")
+@Component
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

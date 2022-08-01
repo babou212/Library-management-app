@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,17 +14,18 @@ import java.time.LocalDate;
 @Builder
 @Entity
 @Table(name = "loans")
+@Component
 public class Loan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "loan_id", nullable = false)
     private Long loanId;
 
-    @Column(name = "barcode")
-    private String barcode;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private Item itemId;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private User user;
 
     @Column(name = "issue_date")
     private LocalDate issueDate;
@@ -33,4 +35,7 @@ public class Loan implements Serializable {
 
     @Column(name = "number_renews")
     private int numRenews;
+
+    public Loan(LocalDate issueDate, LocalDate dueDate, int numRenews) {
+    }
 }

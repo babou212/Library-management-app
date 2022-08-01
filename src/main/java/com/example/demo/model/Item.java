@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,14 +14,12 @@ import java.time.LocalDate;
 @Builder
 @Entity
 @Table(name = "items")
+@Component
 public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "item_id", nullable = false)
     private Long itemId;
-
-    @Column(name = "barcode")
-    private String barcode;
 
     @Column(name = "author")
     private String author;
