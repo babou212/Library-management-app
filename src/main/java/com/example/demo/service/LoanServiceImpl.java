@@ -29,11 +29,11 @@ public class LoanServiceImpl implements LoanService {
 
             if(item.getMediaType().equals(MediaType.BOOK)) {
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
-                Loan loan = new Loan(issueDate, dueDate, numRenews);
+                Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews);
                 loanRepo.save(loan);
             } else if (item.getMediaType().equals(MediaType.MULTIMEDIA)){
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
-                Loan loan = new Loan(issueDate, dueDate, numRenews);
+                Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews);
                 loanRepo.save(loan);
             }
         }
@@ -44,7 +44,6 @@ public class LoanServiceImpl implements LoanService {
         if (loan.getLoanId().equals(loanId)) {
             LocalDate currentDate = LocalDate.now();
 
-            final int[] quitElseIf = {0};
                 if (loan.getItemId().getMediaType().equals(MediaType.BOOK)
                         && loan.getNumRenews() < 3) {
                     LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);

@@ -21,10 +21,10 @@ public class Loan implements Serializable {
     @Column(name = "loan_id", nullable = false)
     private Long loanId;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne
     private Item itemId;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @Column(name = "issue_date")
@@ -35,7 +35,4 @@ public class Loan implements Serializable {
 
     @Column(name = "number_renews")
     private int numRenews;
-
-    public Loan(LocalDate issueDate, LocalDate dueDate, int numRenews) {
-    }
 }
