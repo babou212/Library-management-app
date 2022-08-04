@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "loans")
 @Component
-public class Loan implements Serializable {
+public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "loan_id", nullable = false)

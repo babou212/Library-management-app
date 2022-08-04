@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "users")
 @Component
-public class User implements Serializable {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id", nullable = false)
