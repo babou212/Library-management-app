@@ -22,7 +22,7 @@ public class Loan {
     private Long loanId;
 
     @OneToOne
-    private Item itemId;
+    private Item item;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

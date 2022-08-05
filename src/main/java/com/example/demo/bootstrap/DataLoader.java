@@ -38,7 +38,7 @@ public class DataLoader implements CommandLineRunner {
                 .year(year).mediaType(MediaType.BOOK).ISBN("sdf345345345345345").build();
         itemRepo.save(item1);
 
-        loan1.setItemId(item1);
+        loan1.setItem(item1);
         loanRepo.save(loan1);
     }
 }

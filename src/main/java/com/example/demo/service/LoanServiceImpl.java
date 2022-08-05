@@ -44,12 +44,12 @@ public class LoanServiceImpl implements LoanService {
         if (loan.getLoanId().equals(loanId)) {
             LocalDate currentDate = LocalDate.now();
 
-                if (loan.getItemId().getMediaType().equals(MediaType.BOOK)
+                if (loan.getItem().getMediaType().equals(MediaType.BOOK)
                         && loan.getNumRenews() < 3) {
                     LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
                     loan.setDueDate(dueDate);
                     loan.setNumRenews(loan.getNumRenews() + 1);
-                } else if (loan.getItemId().getMediaType().equals(MediaType.MULTIMEDIA) &&
+                } else if (loan.getItem().getMediaType().equals(MediaType.MULTIMEDIA) &&
                         loan.getNumRenews() < 2) {
                     LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                     loan.setDueDate(dueDate);
