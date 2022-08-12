@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.model.Item;
 import com.example.demo.model.Loan;
 import com.example.demo.model.MediaType;
@@ -7,9 +8,11 @@ import com.example.demo.model.User;
 import com.example.demo.repository.LoanRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -65,7 +68,13 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public Loan findById(Long aLong) {
-        return loanRepo.findById(aLong).orElse(null);
+        Optional<Loan> loanOptional = loanRepo.findById(aLong);
+
+        if (loanOptional.isEmpty()) {
+            throw new NotFoundException("ID Not Found");
+        } else {
+            return loanOptional.get();
+        }
     }
 
     @Override
