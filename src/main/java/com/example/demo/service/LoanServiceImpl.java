@@ -8,7 +8,6 @@ import com.example.demo.model.User;
 import com.example.demo.repository.LoanRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
