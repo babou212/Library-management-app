@@ -71,7 +71,7 @@ public class LoanServiceImpl implements LoanService {
         Optional<Loan> loanOptional = loanRepo.findById(aLong);
 
         if (loanOptional.isEmpty()) {
-            throw new NotFoundException("ID Not Found");
+            throw new NotFoundException("ID: " + aLong.toString() + " Not Found");
         } else {
             return loanOptional.get();
         }
