@@ -13,12 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @Component
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
-
+public class User  extends BaseEntity {
     @Column(name = "first_name")
     private String firstName;
 

@@ -14,11 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "items")
 @Component
-public class Item {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "item_id", nullable = false)
-    private Long itemId;
+public class Item extends BaseEntity {
 
     @Column(name = "author")
     private String author;

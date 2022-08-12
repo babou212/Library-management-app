@@ -14,12 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "loans")
 @Component
-public class Loan {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "loan_id", nullable = false)
-    private Long loanId;
-
+public class Loan extends BaseEntity {
     @OneToOne
     private Item item;
 

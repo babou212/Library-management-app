@@ -22,7 +22,7 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public void issueLoan(Long userId, Long itemId) {
-        if (user.getUserId().equals(userId) && item.getItemId().equals(itemId)) {
+        if (user.getId().equals(userId) && item.getId().equals(itemId)) {
             LocalDate issueDate = LocalDate.now();
             LocalDate currentDate = LocalDate.now();
             int numRenews = 0;
@@ -41,7 +41,7 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public void renewLoan(Long loanId) {
-        if (loan.getLoanId().equals(loanId)) {
+        if (loan.getId().equals(loanId)) {
             LocalDate currentDate = LocalDate.now();
 
                 if (loan.getItem().getMediaType().equals(MediaType.BOOK)
@@ -82,7 +82,7 @@ public class LoanServiceImpl implements LoanService {
     public void deleteById(Long aLong) {
         LocalDate currentDate = LocalDate.now();
 
-        if (loan.getLoanId().equals(aLong)) {
+        if (loan.getId().equals(aLong)) {
             if (loan.getDueDate().isAfter(currentDate) || loan.getDueDate().equals(currentDate)) {
                 loanRepo.deleteById(aLong);
             }
