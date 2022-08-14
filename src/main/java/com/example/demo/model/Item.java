@@ -4,7 +4,6 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 
 @Setter
@@ -15,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "items")
 @Component
-public class Item extends BaseEntity implements Serializable {
+public class Item extends BaseEntity  {
 
     @Column(name = "author")
     private String author;

@@ -4,7 +4,6 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Setter
@@ -15,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 @Component
-public class LibraryUser extends BaseEntity implements Serializable {
+public class LibraryUser extends BaseEntity {
     @Column(name = "first_name")
     private String firstName;
 
