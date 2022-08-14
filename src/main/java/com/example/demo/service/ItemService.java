@@ -1,6 +1,13 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Item;
+import com.example.demo.repository.ItemRepo;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-public interface ItemService extends CrudService<Item, Long> {
+
+@RequiredArgsConstructor
+@Service
+public class ItemService {
+    private final ItemRepo itemRepo;
+
 }

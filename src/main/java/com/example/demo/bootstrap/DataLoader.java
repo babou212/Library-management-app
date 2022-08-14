@@ -25,7 +25,8 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        LibraryUser libraryUser1 = LibraryUser.builder().firstName("Tim").lastName("Smith").email("tim_smith@yahoo.com").build();
+        LibraryUser libraryUser1 = LibraryUser.builder().firstName("Tim").lastName("Smith")
+                .email("tim_smith@yahoo.com").build();
         userRepo.save(libraryUser1);
 
         LocalDate currentDate = LocalDate.now();

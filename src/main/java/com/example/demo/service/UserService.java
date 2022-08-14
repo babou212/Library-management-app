@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.model.LibraryUser;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-public interface UserService extends CrudService<LibraryUser, Long>{
+@RequiredArgsConstructor
+@Service
+public class UserService {
 }
