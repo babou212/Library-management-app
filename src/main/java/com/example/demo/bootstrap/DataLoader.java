@@ -9,13 +9,13 @@ import com.example.demo.repository.LoanRepo;
 import com.example.demo.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 @RequiredArgsConstructor
-@Component
+@Configuration
 public class DataLoader implements CommandLineRunner {
     private final ItemRepo itemRepo;
 

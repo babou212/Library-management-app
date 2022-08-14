@@ -19,7 +19,7 @@ public class ControllerExceptionHandler {
         log.error(exception.getMessage());
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("404error.html");
+        modelAndView.setViewName("404error");
         modelAndView.addObject("exception", exception);
 
         return modelAndView;
