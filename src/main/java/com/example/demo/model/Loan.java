@@ -19,7 +19,7 @@ public class Loan extends BaseEntity {
     private Item item;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private LibraryUser libraryUser;
 
     @Column(name = "issue_date")
     private LocalDate issueDate;

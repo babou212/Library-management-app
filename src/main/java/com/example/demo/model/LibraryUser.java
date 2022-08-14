@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @Component
-public class User  extends BaseEntity {
+public class LibraryUser extends BaseEntity {
     @Column(name = "first_name")
     private String firstName;
 
@@ -22,4 +23,7 @@ public class User  extends BaseEntity {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany
+    private Set<Loan> loan;
 }

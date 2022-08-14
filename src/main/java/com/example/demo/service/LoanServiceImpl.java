@@ -4,7 +4,7 @@ import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.model.Item;
 import com.example.demo.model.Loan;
 import com.example.demo.model.MediaType;
-import com.example.demo.model.User;
+import com.example.demo.model.LibraryUser;
 import com.example.demo.repository.LoanRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,13 +18,13 @@ import java.util.Set;
 @Service
 public class LoanServiceImpl implements LoanService {
     private final LoanRepo loanRepo;
-    private final User user;
+    private final LibraryUser libraryUser;
     private final Item item;
     private final Loan loan;
 
     @Override
     public void issueLoan(Long userId, Long itemId) {
-        if (user.getId().equals(userId) && item.getId().equals(itemId)) {
+        if (libraryUser.getId().equals(userId) && item.getId().equals(itemId)) {
             LocalDate issueDate = LocalDate.now();
             LocalDate currentDate = LocalDate.now();
             int numRenews = 0;

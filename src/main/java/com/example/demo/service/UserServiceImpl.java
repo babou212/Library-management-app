@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.User;
+import com.example.demo.model.LibraryUser;
 import com.example.demo.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,22 +11,22 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     @Override
-    public Set<User> findAll() {
-        return (Set<User>) userRepo.findAll();
+    public Set<LibraryUser> findAll() {
+        return (Set<LibraryUser>) userRepo.findAll();
     }
 
     @Override
-    public User findById(Long aLong) {
+    public LibraryUser findById(Long aLong) {
         return userRepo.findById(aLong).orElse(null);
     }
 
     @Override
-    public User save(User object) {
+    public LibraryUser save(LibraryUser object) {
         return userRepo.save(object);
     }
 
     @Override
-    public void delete(User object) {
+    public void delete(LibraryUser object) {
         userRepo.delete(object);
     }
 

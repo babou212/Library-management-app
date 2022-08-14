@@ -1,9 +1,9 @@
 package com.example.demo.bootstrap;
 
 import com.example.demo.model.Item;
+import com.example.demo.model.LibraryUser;
 import com.example.demo.model.Loan;
 import com.example.demo.model.MediaType;
-import com.example.demo.model.User;
 import com.example.demo.repository.ItemRepo;
 import com.example.demo.repository.LoanRepo;
 import com.example.demo.repository.UserRepo;
@@ -25,13 +25,13 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User user1 = User.builder().firstName("Tim").lastName("Smith").email("tim_smith@yahoo.com").build();
-        userRepo.save(user1);
+        LibraryUser libraryUser1 = LibraryUser.builder().firstName("Tim").lastName("Smith").email("tim_smith@yahoo.com").build();
+        userRepo.save(libraryUser1);
 
         LocalDate currentDate = LocalDate.now();
         LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
         Loan loan1 = Loan.builder().issueDate(currentDate)
-                .dueDate(dueDate).user(user1).build();
+                .dueDate(dueDate).libraryUser(libraryUser1).build();
 
         LocalDate year = LocalDate.of(1872, 7, 16);
         Item item1 = Item.builder().author("Oscar Wilde").title("something")

@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.User;
+import com.example.demo.model.LibraryUser;
 
-public interface UserService extends CrudService<User, Long>{
+public interface UserService extends CrudService<LibraryUser, Long>{
 }
