@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.exceptions.NotFoundException;
+import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.LibraryUser;
 import com.example.demo.repository.ItemRepo;
 import com.example.demo.repository.UserRepo;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/user")
+@RequestMapping("api/v1/user")
 public class UserController {
     private final UserRepo userRepo;
     private final ItemRepo itemRepo;

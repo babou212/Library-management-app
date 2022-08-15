@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.exceptions.NotFoundException;
+import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Loan;
 import com.example.demo.repository.LoanRepo;
 import com.example.demo.service.LoanService;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/loan")
+@RequestMapping("api/v1/loan")
 public class LoanController {
     private final LoanRepo loanRepo;
     private final LoanService loanService;

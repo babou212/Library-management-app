@@ -26,7 +26,7 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
         LibraryUser libraryUser1 = LibraryUser.builder().firstName("Tim").lastName("Smith")
-                .email("tim_smith@yahoo.com").build();
+                .email("tim_smith123@yahoo.com").build();
         userRepo.save(libraryUser1);
 
         LocalDate currentDate = LocalDate.now();
@@ -34,9 +34,9 @@ public class DataLoader implements CommandLineRunner {
         Loan loan1 = Loan.builder().issueDate(currentDate)
                 .dueDate(dueDate).libraryUser(libraryUser1).build();
 
-        LocalDate year = LocalDate.of(1872, 7, 16);
-        Item item1 = Item.builder().author("Oscar Wilde").title("something")
-                .year(year).mediaType(MediaType.BOOK).ISBN("sdf345345345345345").build();
+        LocalDate year = LocalDate.of(1887, 3, 23);
+        Item item1 = Item.builder().author("Oscar Wilde").title("The Canterville Ghost")
+                .year(year).mediaType(MediaType.BOOK).ISBN("9780003700947").build();
         itemRepo.save(item1);
 
         loan1.setItem(item1);
