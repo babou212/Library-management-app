@@ -45,6 +45,7 @@ jobs:
         java-version: '17'
         cache: 'maven'
     - name: Build with Maven
+    - run: java -cp java Library-management-app
           
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
