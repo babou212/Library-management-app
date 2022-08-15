@@ -3,19 +3,17 @@ on:
   push:
     branches:
     - master
-    - release/*
   pull_request:
     branches:
     - master
-    - release/*
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        java_version: ['8', '11', '17']
-        os: ['ubuntu-latest', 'windows-latest']
+        java_version: ['17']
+        os: ['ubuntu-latest']
     env:
       JAVA_OPTS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
     steps:
@@ -25,7 +23,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@2c7a4878f5d120bd643426d54ae1209b29cc01a3 # tag=v3
       with:
-        distribution: 'temurin'
+        distribution: 'openjdk'
         java-version: ${{ matrix.java_version }}
     - name: Cache SonarCloud packages
       uses: actions/cache@a7c34adf76222e77931dedbf4a45b2e4648ced19 # tag=v3.0.7
