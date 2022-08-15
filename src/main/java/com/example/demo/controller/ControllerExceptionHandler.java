@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 @ControllerAdvice
 public class ControllerExceptionHandler {
-
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public ModelAndView handleNotFound(Exception exception) {
