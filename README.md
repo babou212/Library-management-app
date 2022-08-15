@@ -1,5 +1,7 @@
 # Library Management Application
 
+Currently Still Under Development 
+
 A simple fullstack web Application for library admins to manage users and loans of items.
 
 
