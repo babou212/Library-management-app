@@ -12,7 +12,7 @@ A simple fullstack web Application for library admins to manage users and loans 
 
 **Server:** Spring Boot, mySQL
 
-**CI/CD:**  Github Actions/ CodeQl
+**Security:**  CodeQl
 
 
 ## Features
