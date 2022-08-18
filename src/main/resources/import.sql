@@ -13,3 +13,7 @@ INSERT INTO loans (id, due_date, issue_date, number_renews, item_id, library_use
 INSERT INTO users (id, email, first_name, last_name) VALUES (14,'unclebob123@gmail.com', 'Robert', 'Martin');
 INSERT INTO items (id, isbn, author, media_type, title, release_year) VALUES (15, '9780132350884', 'Robert Cecil Martin', 'BOOK', 'Clean Code', '2008-08-01');
 INSERT INTO loans (id, due_date, issue_date, number_renews, item_id, library_user_id) VALUES (16, '2022-09-12', '2022-08-15', 0, 15, 14);
+
+INSERT INTO users (id, email, first_name, last_name) VALUES (1,'tim_smith123@yahoo.com', 'Tim', 'Smith');
+INSERT INTO items (id, isbn, author, media_type, title, release_year) VALUES (2, '9780003700947', 'Oscar Wilde', 'BOOK', 'The Canter-ville Ghost', '2008-08-01');
+INSERT INTO loans (id, due_date, issue_date, number_renews, item_id, library_user_id) VALUES (3, '2022-09-16', '2022-08-18', 0, 2, 1);
