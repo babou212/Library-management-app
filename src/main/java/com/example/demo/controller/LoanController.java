@@ -18,7 +18,7 @@ public class LoanController {
     private final LoanService loanService;
 
     @GetMapping("/all")
-    public List<Loan> listAllLoans() {
+    public @ResponseBody List<Loan> listAllLoans() {
         if (loanRepo.count() > 0) {
             return loanRepo.findAll();
         }else {
@@ -34,9 +34,9 @@ public class LoanController {
             throw new NotFoundException("Loan Not Found");
         }
     }
+
     @PostMapping("/createNewLoan")
-    public @ResponseBody String createNewLoan (@RequestParam Long userId, @RequestParam Long itemId){
+    public void createNewLoan (@RequestParam Long userId, @RequestParam Long itemId) {
         loanService.issueLoan(userId, itemId);
-        return "New Loan Created!";
     }
 }

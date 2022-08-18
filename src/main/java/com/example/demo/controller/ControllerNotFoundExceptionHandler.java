@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @ControllerAdvice
-public class ControllerExceptionHandler {
+public class ControllerNotFoundExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public ModelAndView handleNotFound(Exception exception) {

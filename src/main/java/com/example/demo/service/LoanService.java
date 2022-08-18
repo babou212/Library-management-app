@@ -55,12 +55,12 @@ public class LoanService {
         }
     }
 
-    public void deleteByIdIfWithinReturnWindow(Long aLong) {
+    public void deleteByIdIfWithinReturnWindow(Long loanId) {
         LocalDate currentDate = LocalDate.now();
 
-        if (loan.getId().equals(aLong)) {
+        if (loan.getId().equals(loanId)) {
             if (loan.getDueDate().isAfter(currentDate) || loan.getDueDate().equals(currentDate)) {
-                loanRepo.deleteById(aLong);
+                loanRepo.deleteById(loanId);
             }
         }
     }
