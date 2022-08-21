@@ -19,7 +19,7 @@ public class ItemController {
     public @ResponseBody List<Item> listAllItems() {
         if (itemRepo.count() > 0) {
             return itemRepo.findAll();
-        }else {
+        } else {
             throw new NotFoundException("No Loans Found");
         }
     }

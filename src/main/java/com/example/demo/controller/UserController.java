@@ -21,7 +21,7 @@ public class UserController {
     public @ResponseBody List<LibraryUser> getAllUsers() {
         if (userRepo.count() > 0) {
             return userRepo.findAll();
-        }else {
+        } else {
             throw new NotFoundException("No Users Found");
         }
     }
@@ -30,7 +30,7 @@ public class UserController {
     public @ResponseBody Optional<LibraryUser> returnLoanById(@PathVariable(name = "id") Long id) {
         if (userRepo.existsById(id)) {
             return userRepo.findById(id);
-        }else {
+        } else {
             throw new NotFoundException("User Not Found");
         }
     }

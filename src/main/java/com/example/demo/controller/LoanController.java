@@ -5,11 +5,13 @@ import com.example.demo.model.Loan;
 import com.example.demo.repository.LoanRepo;
 import com.example.demo.service.LoanService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/loan")
@@ -18,10 +20,10 @@ public class LoanController {
     private final LoanService loanService;
 
     @GetMapping("/all")
-    public @ResponseBody List<Loan> listAllLoans() {
+    public @ResponseBody Optional<List<Loan>> listAllLoans() {
         if (loanRepo.count() > 0) {
-            return loanRepo.findAll();
-        }else {
+            return Optional.of(loanRepo.findAll());
+        } else {
             throw new NotFoundException("No Loans Found");
         }
     }
@@ -35,8 +37,12 @@ public class LoanController {
         }
     }
 
-    @PostMapping("/createNewLoan")
-    public void createNewLoan (@RequestParam Long userId, @RequestParam Long itemId) {
-        loanService.issueLoan(userId, itemId);
+    @RequestMapping ("/create-new-loan/{userId}/{itemId}")
+    public void createNewLoan (@PathVariable Long userId, @PathVariable Long itemId) {
+        try {
+            loanService.issueLoan(userId, itemId);
+        } catch (NumberFormatException e){
+            log.error("Null value passed" + e);
+        }
     }
 }
