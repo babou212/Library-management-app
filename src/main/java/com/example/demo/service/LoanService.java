@@ -24,7 +24,6 @@ public class LoanService {
     private final ItemRepo itemRepo;
 
     public void issueLoan(Long userId, Long itemId) {
-        if (userRepo.existsById(userId) && itemRepo.existsById(itemId)) {
             LocalDate issueDate = LocalDate.now();
             LocalDate currentDate = LocalDate.now();
             int numRenews = 0;
@@ -51,7 +50,6 @@ public class LoanService {
                 loanRepo.save(loan);
             }
         }
-    }
 
 //    public void renewLoan(Long loanId) {
 //        if (loan.getId().equals(loanId)) {
