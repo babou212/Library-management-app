@@ -24,11 +24,12 @@ public class LoanService {
     private final ItemRepo itemRepo;
 
     public void issueLoan(Long userId, Long itemId) {
-            LocalDate issueDate = LocalDate.now();
-            LocalDate currentDate = LocalDate.now();
-            int numRenews = 0;
+        LocalDate issueDate = LocalDate.now();
+        LocalDate currentDate = LocalDate.now();
+        int numRenews = 0;
 
             if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.BOOK)) {
+
                 Optional<LibraryUser> user = userRepo.findById(userId);
                 Optional<Item> item = itemRepo.findById(itemId);
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
@@ -40,6 +41,7 @@ public class LoanService {
                 loanRepo.save(newLoan);
 
             } else if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.MULTIMEDIA)) {
+
                 Optional<LibraryUser> user = userRepo.findById(userId);
                 Optional<Item> item = itemRepo.findById(itemId);
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
@@ -53,10 +55,11 @@ public class LoanService {
         }
 
     public void renewLoan(Long loanId) {
-            LocalDate currentDate = LocalDate.now();
+        LocalDate currentDate = LocalDate.now();
 
                 if (loanRepo.findById(loanId).get().getItem().getMediaType().equals(MediaType.BOOK)
                         && loanRepo.findById(loanId).get().getNumRenews() < 3) {
+
                     LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
                     int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
                     Loan loanFromDb = loanRepo.findById(loanId).get();
@@ -68,6 +71,7 @@ public class LoanService {
 
                 } else if (loanRepo.findById(loanId).get().getItem().getMediaType().equals(MediaType.MULTIMEDIA)
                         && loanRepo.findById(loanId).get().getNumRenews() < 2) {
+
                     LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
                     int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
                     Loan loanFromDb = loanRepo.findById(loanId).get();
@@ -85,6 +89,7 @@ public class LoanService {
 
               if (loanRepo.findById(loanId).get().getDueDate().isAfter(currentDate)
                       || loanRepo.findById(loanId).get().getDueDate().equals(currentDate)) {
+
                 loanRepo.deleteById(loanId);
             }
         }

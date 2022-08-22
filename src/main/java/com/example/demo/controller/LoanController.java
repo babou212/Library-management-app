@@ -23,6 +23,7 @@ public class LoanController {
     public @ResponseBody Optional<List<Loan>> listAllLoans() {
         if (loanRepo.count() > 0) {
             return Optional.of(loanRepo.findAll());
+
         } else {
             throw new NotFoundException("No Loans Found");
         }
@@ -32,6 +33,7 @@ public class LoanController {
     public @ResponseBody Optional<Loan> returnLoanById(@PathVariable(name = "id") Long id) {
         if (loanRepo.existsById(id)) {
             return loanRepo.findById(id);
+
         } else {
             throw new NotFoundException("Loan Not Found");
         }
