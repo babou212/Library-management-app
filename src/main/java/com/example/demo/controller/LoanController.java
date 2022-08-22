@@ -56,4 +56,14 @@ public class LoanController {
             log.error("Null value passed " + e);
         }
     }
+
+    @RequestMapping("/return-loan/{loanId}")
+    public void returnLoan(@PathVariable Long loanId) {
+        try {
+            loanService.returnLoan(loanId);
+
+        } catch (NumberFormatException e) {
+            log.error("Null value passed " + e);
+        }
+    }
 }

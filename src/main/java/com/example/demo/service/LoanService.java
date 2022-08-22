@@ -33,22 +33,22 @@ public class LoanService {
                 Optional<Item> item = itemRepo.findById(itemId);
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
 
-                Loan loan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
+                Loan newLoan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
                         .libraryUser(user.orElseThrow(null))
                         .item(item.orElseThrow(null)).build();
 
-                loanRepo.save(loan);
+                loanRepo.save(newLoan);
 
             } else if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.MULTIMEDIA)) {
                 Optional<LibraryUser> user = userRepo.findById(userId);
                 Optional<Item> item = itemRepo.findById(itemId);
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
 
-                Loan loan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
+                Loan newLoan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
                         .libraryUser(user.orElseThrow(null))
                         .item(item.orElseThrow(null)).build();
 
-                loanRepo.save(loan);
+                loanRepo.save(newLoan);
             }
         }
 
@@ -80,13 +80,12 @@ public class LoanService {
 
     }
 
-//    public void deleteByIdIfWithinReturnWindow(Long loanId) {
-//        LocalDate currentDate = LocalDate.now();
-//
-//        if (loan.getId().equals(loanId)) {
-//            if (loan.getDueDate().isAfter(currentDate) || loan.getDueDate().equals(currentDate)) {
-//                loanRepo.deleteById(loanId);
-//            }
-//        }
-//    }
+    public void returnLoan(Long loanId) {
+        LocalDate currentDate = LocalDate.now();
+
+              if (loanRepo.findById(loanId).get().getDueDate().isAfter(currentDate)
+                      || loanRepo.findById(loanId).get().getDueDate().equals(currentDate)) {
+                loanRepo.deleteById(loanId);
+            }
+        }
 }
