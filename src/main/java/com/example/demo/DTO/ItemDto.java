@@ -12,22 +12,22 @@ import java.time.LocalDate;
 @Data
 public class ItemDto implements Serializable {
     @NonNull
-    @JsonProperty("id")
+    //@JsonProperty("id")
     private final Long id;
 
-    @JsonProperty("author")
+    //@JsonProperty("author")
     private final String author;
 
-    @JsonProperty("title")
+    //@JsonProperty("title")
     private final String title;
 
-    @JsonProperty("year")
+    //@JsonProperty("year")
     private final LocalDate year;
 
-    @JsonProperty("mediaType")
+    //@JsonProperty("mediaType")
     private final MediaType mediaType;
 
     @ISBN
-    @JsonProperty("ISBN")
+    //@JsonProperty("ISBN")
     private final String ISBN;
 }

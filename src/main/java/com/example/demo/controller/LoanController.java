@@ -59,7 +59,7 @@ public class LoanController {
         }
     }
 
-    @RequestMapping("/return-loan/{loanId}")
+    @PostMapping("/return-loan/{loanId}")
     public void returnLoan(@PathVariable Long loanId) {
         try {
             loanService.returnLoan(loanId);

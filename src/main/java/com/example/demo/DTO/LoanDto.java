@@ -10,21 +10,21 @@ import java.time.LocalDate;
 @Data
 public class LoanDto implements Serializable {
     @NonNull
-    @JsonProperty("id")
+    //@JsonProperty("id")
     private final Long id;
 
-    @JsonProperty("item")
+    //@JsonProperty("item")
     private final ItemDto item;
 
-    @JsonProperty("user")
+    //@JsonProperty("user")
     private final LibraryUserDto libraryUser;
 
-    @JsonProperty("issueDate")
+    //@JsonProperty("issueDate")
     private final LocalDate issueDate;
 
-    @JsonProperty("dueDate")
+    //@JsonProperty("dueDate")
     private final LocalDate dueDate;
 
-    @JsonProperty("numRenews")
+    //@JsonProperty("numRenews")
     private final int numRenews;
 }
