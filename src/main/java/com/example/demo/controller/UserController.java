@@ -32,13 +32,9 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<LibraryUserDto>  returnUserById(@PathVariable(name = "id") Long id) {
-        if (userRepo.existsById(id)) {
             return new ResponseEntity<>(
                     mapStructMapper.convert(userRepo.findById(id).get()),
                     HttpStatus.OK
             );
-        } else {
-            throw new NotFoundException("User Not Found");
-        }
     }
 }
