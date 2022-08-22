@@ -39,36 +39,47 @@ public class LoanService {
 
                 loanRepo.save(loan);
 
-            } else if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.MULTIMEDIA)){
+            } else if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.MULTIMEDIA)) {
                 Optional<LibraryUser> user = userRepo.findById(userId);
                 Optional<Item> item = itemRepo.findById(itemId);
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
 
                 Loan loan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
-                        .libraryUser(user.orElseThrow(null)).item(item.orElseThrow()).build();
+                        .libraryUser(user.orElseThrow(null))
+                        .item(item.orElseThrow(null)).build();
 
                 loanRepo.save(loan);
             }
         }
 
-//    public void renewLoan(Long loanId) {
-//        if (loan.getId().equals(loanId)) {
-//            LocalDate currentDate = LocalDate.now();
-//
-//                if (loan.getItem().getMediaType().equals(MediaType.BOOK)
-//                        && loan.getNumRenews() < 3) {
-//                    LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
-//                    loan.setDueDate(dueDate);
-//                    loan.setNumRenews(loan.getNumRenews() + 1);
-//                } else if (loan.getItem().getMediaType().equals(MediaType.MULTIMEDIA) &&
-//                        loan.getNumRenews() < 2) {
-//                    LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
-//                    loan.setDueDate(dueDate);
-//                    loan.setNumRenews(loan.getNumRenews() + 1);
-//                }
-//        }
-//    }
-//
+    public void renewLoan(Long loanId) {
+            LocalDate currentDate = LocalDate.now();
+
+                if (loanRepo.findById(loanId).get().getItem().getMediaType().equals(MediaType.BOOK)
+                        && loanRepo.findById(loanId).get().getNumRenews() < 3) {
+                    LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
+                    int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
+                    Loan loanFromDb = loanRepo.findById(loanId).get();
+
+                    loanFromDb.setDueDate(dueDate);
+                    loanFromDb.setNumRenews(numRenews);
+
+                    loanRepo.save(loanFromDb);
+
+                } else if (loanRepo.findById(loanId).get().getItem().getMediaType().equals(MediaType.MULTIMEDIA)
+                        && loanRepo.findById(loanId).get().getNumRenews() < 2) {
+                    LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
+                    int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
+                    Loan loanFromDb = loanRepo.findById(loanId).get();
+
+                    loanFromDb.setDueDate(dueDate);
+                    loanFromDb.setNumRenews(numRenews);
+
+                    loanRepo.save(loanFromDb);
+                }
+
+    }
+
 //    public void deleteByIdIfWithinReturnWindow(Long loanId) {
 //        LocalDate currentDate = LocalDate.now();
 //

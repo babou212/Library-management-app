@@ -37,12 +37,23 @@ public class LoanController {
         }
     }
 
-    @RequestMapping ("/create-new-loan/{userId}/{itemId}")
-    public void createNewLoan (@PathVariable Long userId, @PathVariable Long itemId) {
+    @RequestMapping("/create-new-loan/{userId}/{itemId}")
+    public void createNewLoan(@PathVariable Long userId, @PathVariable Long itemId) {
         try {
             loanService.issueLoan(userId, itemId);
-        } catch (NumberFormatException e){
-            log.error("Null value passed" + e);
+
+        } catch (NumberFormatException e) {
+            log.error("Null value passed " + e);
+        }
+    }
+
+    @RequestMapping("/renew-loan-with-loan-id/{loanId}")
+    public void renewLoan(@PathVariable Long loanId) {
+        try {
+            loanService.renewLoan(loanId);
+
+        } catch (NumberFormatException e) {
+            log.error("Null value passed " + e);
         }
     }
 }
