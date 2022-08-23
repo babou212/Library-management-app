@@ -1,72 +1,85 @@
 package com.example.demo.controller;
 
-import com.example.demo.exception.NotFoundException;
+import com.example.demo.DTO.LoanDto;
 import com.example.demo.model.Loan;
+import com.example.demo.mappers.MapStructMapper;
 import com.example.demo.repository.LoanRepo;
 import com.example.demo.service.LoanService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/loan")
+@RequestMapping("api/v1/loans")
 public class LoanController {
     private final LoanRepo loanRepo;
     private final LoanService loanService;
+    private final MapStructMapper mapStructMapper;
 
     @GetMapping("/all")
-    public @ResponseBody Optional<List<Loan>> listAllLoans() {
-        if (loanRepo.count() > 0) {
-            return Optional.of(loanRepo.findAll());
-
-        } else {
-            throw new NotFoundException("No Loans Found");
+    public @ResponseBody ResponseEntity<List<Loan>> getLoans() {
+        try {
+            log.info("Executing GET request");
+            return ResponseEntity.ok(loanRepo.findAll());
+        } catch (Exception ex){
+            log.error("Error during get Loans request" + ex);
+            return ResponseEntity.internalServerError().build();
         }
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody Optional<Loan> returnLoanById(@PathVariable(name = "id") Long id) {
-        if (loanRepo.existsById(id)) {
-            return loanRepo.findById(id);
-
-        } else {
-            throw new NotFoundException("Loan Not Found");
+    public @ResponseBody ResponseEntity<LoanDto> returnLoanById(@PathVariable(name = "id") Long id) {
+        try {
+            log.info("Executing GET request");
+            return new ResponseEntity<>(
+                    mapStructMapper.convert(loanRepo.findById(id).get()),
+                    HttpStatus.OK
+            );
+        } catch (Exception ex){
+            log.error("Error during get request: " + ex);
+            return ResponseEntity.internalServerError().build();
         }
     }
 
-    @RequestMapping("/create-new-loan/{userId}/{itemId}")
-    public void createNewLoan(@PathVariable Long userId, @PathVariable Long itemId) {
+    @RequestMapping( "/create-new-loan/{userId}/{itemId}")
+    public ResponseEntity<Void> createNewLoan(@PathVariable Long userId, @PathVariable Long itemId) {
         try {
+            log.info("Executing POST request");
             loanService.issueLoan(userId, itemId);
-
-        } catch (NumberFormatException e) {
-            log.error("Null value passed " + e);
+            return ResponseEntity.ok().build();
+        } catch (NumberFormatException ex) {
+            log.error("Error during executing post transaction request: " + ex);
+            return ResponseEntity.internalServerError().build();
         }
     }
 
-    @RequestMapping("/renew-loan-with-loan-id/{loanId}")
-    public void renewLoan(@PathVariable Long loanId) {
+    @RequestMapping( "/renew-loan-with-loan-id/{loanId}")
+    public ResponseEntity<Void> renewLoan(@PathVariable Long loanId) {
         try {
+            log.info("Executing POST request");
             loanService.renewLoan(loanId);
-
-        } catch (NumberFormatException e) {
-            log.error("Null value passed " + e);
+            return ResponseEntity.ok().build();
+        } catch (NumberFormatException ex) {
+            log.error("Null value passed " + ex);
+            return ResponseEntity.internalServerError().build();
         }
     }
 
-    @PostMapping("/return-loan/{loanId}")
-    public void returnLoan(@PathVariable Long loanId) {
+    @RequestMapping( "/return-loan/{loanId}")
+    public ResponseEntity<Void> returnLoan(@PathVariable Long loanId) {
         try {
+            log.info("Executing POST request");
             loanService.returnLoan(loanId);
-
-        } catch (NumberFormatException e) {
-            log.error("Null value passed " + e);
+            return ResponseEntity.ok().build();
+        } catch (NumberFormatException ex) {
+            log.error("Null value passed " + ex);
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
