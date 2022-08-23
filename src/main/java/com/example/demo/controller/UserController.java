@@ -34,11 +34,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LibraryUserDto>  returnUserById(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<LibraryUserDto>  returnUserById(@PathVariable Long id) {
         try {
             log.info("Executing GET request");
             return new ResponseEntity<>(
-                    mapStructMapper.convert(userRepo.findById(id).get()),
+                    mapStructMapper.convertUserToDto(userRepo.findById(id).get()),
                     HttpStatus.OK
             );
         } catch (Exception ex){

@@ -32,11 +32,11 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody ResponseEntity<ItemDto> returnItemById(@PathVariable(name = "id") Long id) {
+    public @ResponseBody ResponseEntity<ItemDto> returnItemById(@PathVariable Long id) {
         try {
             log.info("Executing GET request");
             return new ResponseEntity<>(
-                    mapStructMapper.convert(itemRepo.findById(id).get()),
+                    mapStructMapper.convertItemToDto(itemRepo.findById(id).get()),
                     HttpStatus.OK
             );
         } catch (Exception ex){

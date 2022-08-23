@@ -11,7 +11,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface MapStructMapper {
 
-    ItemDto convert(Item item);
-    LibraryUserDto convert(LibraryUser libraryUser);
-    LoanDto convert(Loan loan);
+    ItemDto convertItemToDto(Item item);
+    LibraryUserDto convertUserToDto(LibraryUser libraryUser);
+    LoanDto convertLoanToDto(Loan loan);
 }
