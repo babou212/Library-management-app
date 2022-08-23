@@ -28,7 +28,7 @@ public class LoanController {
             log.info("Executing GET request");
             return ResponseEntity.ok(loanRepo.findAll());
         } catch (Exception ex){
-            log.error("Error during get Loans request" + ex);
+            log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -42,7 +42,7 @@ public class LoanController {
                     HttpStatus.OK
             );
         } catch (Exception ex){
-            log.error("Error during get request: " + ex);
+            log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -54,7 +54,7 @@ public class LoanController {
             loanService.issueLoan(userId, itemId);
             return ResponseEntity.ok().build();
         } catch (NumberFormatException ex) {
-            log.error("Error during executing post transaction request: " + ex);
+            log.error("Error executing POST request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -66,7 +66,7 @@ public class LoanController {
             loanService.renewLoan(loanId);
             return ResponseEntity.ok().build();
         } catch (NumberFormatException ex) {
-            log.error("Null value passed " + ex);
+            log.error("Error executing POST request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -78,7 +78,7 @@ public class LoanController {
             loanService.returnLoan(loanId);
             return ResponseEntity.ok().build();
         } catch (NumberFormatException ex) {
-            log.error("Null value passed " + ex);
+            log.error("Error executing POST request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }

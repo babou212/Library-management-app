@@ -1,7 +1,6 @@
 package com.example.demo.DTO;
 
 import com.example.demo.model.MediaType;
-import lombok.Data;
 import lombok.NonNull;
 import org.hibernate.validator.constraints.ISBN;
 

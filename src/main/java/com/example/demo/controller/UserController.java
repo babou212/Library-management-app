@@ -28,7 +28,7 @@ public class UserController {
             HttpStatus.OK)
             ;
         } catch (Exception ex){
-            log.error("Error during get request: " + ex);
+            log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -42,7 +42,7 @@ public class UserController {
                     HttpStatus.OK
             );
         } catch (Exception ex){
-            log.error("Error during get request" + ex);
+            log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }

@@ -1,6 +1,5 @@
 package com.example.demo.DTO;
 
-import lombok.Data;
 import lombok.NonNull;
 
 import java.io.Serializable;

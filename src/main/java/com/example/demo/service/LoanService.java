@@ -92,5 +92,5 @@ public class LoanService {
 
                 loanRepo.deleteById(loanId);
             }
-        }
+    }
 }

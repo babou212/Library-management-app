@@ -26,7 +26,7 @@ public class ItemController {
             log.info("Executing GET request");
             return ResponseEntity.ok(itemRepo.findAll());
         } catch (Exception ex){
-            log.error("Error during get request: " + ex);
+            log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -40,7 +40,7 @@ public class ItemController {
                     HttpStatus.OK
             );
         } catch (Exception ex){
-            log.error("Error during get request: " + ex);
+            log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
