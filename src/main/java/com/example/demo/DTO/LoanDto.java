@@ -6,18 +6,6 @@ import lombok.NonNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-@Data
-public class LoanDto implements Serializable {
-    @NonNull
-    private final Long id;
-
-    private final ItemDto item;
-
-    private final LibraryUserDto libraryUser;
-
-    private final LocalDate issueDate;
-
-    private final LocalDate dueDate;
-
-    private final int numRenews;
+public record LoanDto(@NonNull Long id, ItemDto item, LibraryUserDto libraryUser, LocalDate issueDate,
+                      LocalDate dueDate, int numRenews) implements Serializable {
 }
