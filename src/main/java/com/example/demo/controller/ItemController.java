@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.DTO.ItemDto;
-import com.example.demo.mappers.MapStructMapper;
+import com.example.demo.mapper.MapStructMapper;
 import com.example.demo.model.Item;
 import com.example.demo.repository.ItemRepo;
 import lombok.RequiredArgsConstructor;

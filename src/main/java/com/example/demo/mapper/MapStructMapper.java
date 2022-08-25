@@ -1,4 +1,4 @@
-package com.example.demo.mappers;
+package com.example.demo.mapper;
 
 import com.example.demo.DTO.ItemDto;
 import com.example.demo.DTO.LibraryUserDto;

@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.DTO.LibraryUserDto;
-import com.example.demo.mappers.MapStructMapper;
+import com.example.demo.mapper.MapStructMapper;
 import com.example.demo.model.LibraryUser;
 import com.example.demo.repository.UserRepo;
 import lombok.RequiredArgsConstructor;

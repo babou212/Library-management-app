@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.DTO.LoanDto;
 import com.example.demo.model.Loan;
-import com.example.demo.mappers.MapStructMapper;
+import com.example.demo.mapper.MapStructMapper;
 import com.example.demo.repository.LoanRepo;
 import com.example.demo.service.LoanService;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +53,7 @@ public class LoanController {
             log.info("Executing POST request");
             loanService.issueLoan(userId, itemId);
             return ResponseEntity.ok().build();
-        } catch (NumberFormatException ex) {
+        } catch (Exception ex) {
             log.error("Error executing POST request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
@@ -65,7 +65,7 @@ public class LoanController {
             log.info("Executing POST request");
             loanService.renewLoan(loanId);
             return ResponseEntity.ok().build();
-        } catch (NumberFormatException ex) {
+        } catch (Exception ex) {
             log.error("Error executing POST request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
@@ -77,7 +77,7 @@ public class LoanController {
             log.info("Executing POST request");
             loanService.returnLoan(loanId);
             return ResponseEntity.ok().build();
-        } catch (NumberFormatException ex) {
+        } catch (Exception ex) {
             log.error("Error executing POST request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
