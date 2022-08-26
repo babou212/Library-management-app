@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
+@CrossOrigin(origins = "http://localhost:8081")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/loans")
@@ -47,11 +48,11 @@ public class LoanController {
         }
     }
 
-    @RequestMapping( "/create-new-loan/{userId}/{itemId}")
-    public ResponseEntity<Void> createNewLoan(@PathVariable Long userId, @PathVariable Long itemId) {
+    @PostMapping( "/create-new-loan")
+    public ResponseEntity<Loan> createNewLoan(@RequestBody Loan loan) {
         try {
             log.info("Executing POST request");
-            loanService.issueLoan(userId, itemId);
+            loanRepo.save(loan);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing POST request: " + ex);
@@ -59,11 +60,11 @@ public class LoanController {
         }
     }
 
-    @RequestMapping( "/renew-loan-with-loan-id/{loanId}")
-    public ResponseEntity<Void> renewLoan(@PathVariable Long loanId) {
+    @RequestMapping( "/renew-loan-with-loan-id/{id}")
+    public ResponseEntity<Void> renewLoan(@PathVariable Long id) {
         try {
             log.info("Executing POST request");
-            loanService.renewLoan(loanId);
+            loanService.renewLoan(id);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing POST request: " + ex);
@@ -71,11 +72,11 @@ public class LoanController {
         }
     }
 
-    @RequestMapping( "/return-loan/{loanId}")
-    public ResponseEntity<Void> returnLoan(@PathVariable Long loanId) {
+    @RequestMapping( "/return-loan/{id}")
+    public ResponseEntity<HttpStatus> returnLoan(@PathVariable Long id) {
         try {
             log.info("Executing POST request");
-            loanService.returnLoan(loanId);
+            loanService.returnLoan(id);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing POST request: " + ex);
