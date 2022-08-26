@@ -1,46 +1,30 @@
-import {Component} from "react";
-import {BrowserRouter as Router, Route, Link, Routes} from "react-router-dom";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import NavBar from "./NavBar";
+import Home from "./components/Home/Home";
 import Loan from "./components/loan/Loan";
-import AddLoan from "./components/loan/AddLoan";
-import ListLoan from "./components/loan/Listloan";
+import Item from "./components/item/Item";
+import User from "./components/user/User";
 
-class App extends Component {
-  render() {
-    return (
-        <Router>
-        <div>
-          <nav className="navbar navbar-expand navbar-dark bg-dark">
-            <a href="/tutorials" className="navbar-brand">
-              Library management System
-            </a>
-            <div className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link to={"/v1/loans/all"} className="nav-link">
-                  Loans
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/add"} className="nav-link">
-                  Add
-                </Link>
-              </li>
-            </div>
-          </nav>
-          <div className="container mt-3">
+function App()  {
+
+  return (
+      <>
+      <NavBar />
+        <div className="container">
             <Routes>
-              <Route exact path={["/v1", "/loans/all"]} component={ListLoan} />
-              <Route exact path="/v1/create-new-loan" component={AddLoan} />
-              <Route path="/v1/loans/:id" component={Loan} />
+                <Route path="/" element={<Home />} />
+                <Route path="/loans" element={<Loan />} />
+                <Route path="/items" element={<Item />} />
+                <Route path="/users" element={<User />} />
             </Routes>
-          </div>
         </div>
-        </Router>
-    );
-  }
+      </>
+  )
 }
 
 export default App;
