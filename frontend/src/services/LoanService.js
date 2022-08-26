@@ -20,7 +20,7 @@ class LoanDataService {
     }
 
     delete(id) {
-        return http.delete(  LOAN_API_BASE_URL+ "return-loan/"  `${id}`);
+        return http.delete(  LOAN_API_BASE_URL+ "return-loan"  `${id}`);
     }
 }
 export default new LoanDataService();
