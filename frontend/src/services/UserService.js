@@ -8,11 +8,11 @@ class UserService {
     }
 
     addNewUser(data) {
-        return axios.post(  LOAN_API_BASE_URL + "add-new-user", data);
+        return axios.post(LOAN_API_BASE_URL + "add-new-user", data);
     }
 
     deleteUserById(id) {
-        return axios.delete(  LOAN_API_BASE_URL+ "delete-user"  `${id}`);
+        return axios.delete(LOAN_API_BASE_URL+ "delete-user"  `${id}`);
     }
 }
 
