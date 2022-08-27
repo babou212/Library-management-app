@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @Slf4j
@@ -34,7 +36,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("get-user/{id}")
     public ResponseEntity<LibraryUserDto>  returnUserById(@PathVariable Long id) {
         try {
             log.info("Executing GET request");
@@ -44,6 +46,22 @@ public class UserController {
             );
         } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity createClient(@RequestBody LibraryUser user) throws URISyntaxException {
+        LibraryUser receivedUser = userRepo.save(user);
+        return ResponseEntity.created(new URI("/users/" + receivedUser.getId())).body(receivedUser);
+    }
+
+    @DeleteMapping("delete-user/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        try {
+            userRepo.deleteById(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception ex) {
             return ResponseEntity.internalServerError().build();
         }
     }

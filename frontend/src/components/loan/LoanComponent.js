@@ -30,6 +30,7 @@ class LoanComponent extends React.Component {
                             <td> Issue Date</td>
                             <td> Due Date</td>
                             <td> Number of renews</td>
+                            <td> Actions</td>
                         </tr>
 
                     </thead>
@@ -43,7 +44,8 @@ class LoanComponent extends React.Component {
                                      <td> {loan.libraryUser.id}</td>   
                                      <td> {loan.issueDate}</td>
                                      <td> {loan.dueDate}</td>
-                                     <td> {loan.numRenews}</td>   
+                                     <td> {loan.numRenews}</td>
+                                     <td>{}</td>   
                                 </tr>
                             )
                         }

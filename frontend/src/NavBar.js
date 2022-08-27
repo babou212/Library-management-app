@@ -9,6 +9,7 @@ export default function navBar() {
             Library Management App
         </Link>
         <ul>
+            <CustomLink to="/">Home</CustomLink>
             <CustomLink to="/users">Users</CustomLink>
             <CustomLink to="/items">Items</CustomLink>
             <CustomLink to="/loans">Loans</CustomLink>

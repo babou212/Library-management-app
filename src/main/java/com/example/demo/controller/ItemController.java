@@ -32,7 +32,7 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("get-item/{id}")
     public @ResponseBody ResponseEntity<ItemDto> returnItemById(@PathVariable Long id) {
         try {
             log.info("Executing GET request");
@@ -42,6 +42,16 @@ public class ItemController {
             );
         } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @DeleteMapping("delete-item/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
+        try {
+            itemRepo.deleteById(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception ex) {
             return ResponseEntity.internalServerError().build();
         }
     }
