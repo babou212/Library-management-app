@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/items")
@@ -25,7 +26,7 @@ public class ItemController {
         try {
             log.info("Executing GET request");
             return ResponseEntity.ok(itemRepo.findAll());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
@@ -39,7 +40,7 @@ public class ItemController {
                     mapStructMapper.convertItemToDto(itemRepo.findById(id).get()),
                     HttpStatus.OK
             );
-        } catch (Exception ex){
+        } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }

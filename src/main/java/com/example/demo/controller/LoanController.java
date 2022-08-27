@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/loans")
@@ -42,20 +42,20 @@ public class LoanController {
                     mapStructMapper.convertLoanToDto(loanRepo.findById(id).get()),
                     HttpStatus.OK
             );
-        } catch (Exception ex){
+        } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
 
-    @PostMapping( "/create-new-loan")
-    public ResponseEntity<Loan> createNewLoan(@RequestBody Loan loan) {
+    @RequestMapping( "/create-new-loan/{userId}/{itemId}")
+    public ResponseEntity<Void> createNewLoan(@PathVariable Long userId,@PathVariable Long itemId) {
         try {
-            log.info("Executing POST request");
-            loanRepo.save(loan);
+            log.info("Executing request");
+            loanService.issueLoan(userId, itemId);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
-            log.error("Error executing POST request: " + ex);
+            log.error("Error executing request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -72,7 +72,7 @@ public class LoanController {
         }
     }
 
-    @RequestMapping( "/return-loan/{id}")
+    @DeleteMapping( "/return-loan/{id}")
     public ResponseEntity<HttpStatus> returnLoan(@PathVariable Long id) {
         try {
             log.info("Executing POST request");
