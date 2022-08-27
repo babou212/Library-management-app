@@ -51,9 +51,13 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity createClient(@RequestBody LibraryUser user) throws URISyntaxException {
-        LibraryUser receivedUser = userRepo.save(user);
-        return ResponseEntity.created(new URI("/users/" + receivedUser.getId())).body(receivedUser);
+    public ResponseEntity<LibraryUser> createUser(@RequestBody LibraryUser user) {
+        try {
+            LibraryUser receivedUser = userRepo.save(user);
+            return ResponseEntity.created(new URI("/users/" + receivedUser.getId())).body(receivedUser);
+        } catch (URISyntaxException ex) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @DeleteMapping("delete-user/{id}")
