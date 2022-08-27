@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import NavBar from "./NavBar";
 import Home from "./components/Home/Home";
-import Loan from "./components/loan/Loan";
+import Loan from "./components/loan/LoanComponent";
 import Item from "./components/item/Item";
 import User from "./components/user/User";
 

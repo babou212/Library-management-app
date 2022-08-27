@@ -2,7 +2,7 @@ import React from 'react';
 
 import LoanComponent from './LoanComponent';
 
-function ListUsers() {
+function ListLoans() {
     return (
         <div>
             <LoanComponent />
@@ -10,4 +10,4 @@ function ListUsers() {
     );
 }
 
-export default ListUsers;
+export default ListLoans;

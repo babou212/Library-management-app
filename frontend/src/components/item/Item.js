@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
 
-function Item() {
-   return <div>
-        <p>
-            Item
-        </p>
-    </div>
+import ItemComponent from './ItemComponent';
+
+function ListItems() {
+    return (
+        <div>
+            <ItemComponent />
+        </div>
+    );
 }
 
-export default Item;
+export default ListItems;

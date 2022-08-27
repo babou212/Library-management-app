@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
 
-function User() {
-    return <div>
-        <p>
-            User
-        </p>
-    </div>
+import UserComponent from './UserComponent';
+
+function ListUsers() {
+    return (
+        <div>
+            <UserComponent />
+        </div>
+    );
 }
 
-export default User;
+export default ListUsers;
