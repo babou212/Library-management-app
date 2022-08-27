@@ -1,18 +1,20 @@
 import React from "react";
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
 export default function navBar() {
 
-    return <nav className="nav">
+    return (
+    <nav className="nav">
         <Link to="/" className="site-title">
             Library Management App
         </Link>
         <ul>
-            <CustomLink href="/users"></CustomLink>
-            <CustomLink href="/items"></CustomLink>
-            <CustomLink href="/loans"></CustomLink>
+            <CustomLink to="/users">Users</CustomLink>
+            <CustomLink to="/items">Items</CustomLink>
+            <CustomLink to="/loans">Loans</CustomLink>
         </ul>
     </nav>
+    )
 }
 
 function CustomLink({ to, children, ...props }) {
