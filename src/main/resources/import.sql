@@ -4,7 +4,7 @@ INSERT INTO loans (id, due_date, issue_date, number_renews, item_id, library_use
 
 INSERT INTO users (id, email, first_name, last_name) VALUES (7,'john_allen4@gmail.com', 'john', 'allen');
 INSERT INTO items (id, isbn, author, media_type, title, release_year) VALUES (8, '9780439362139', 'J. K. Rowling', 'BOOK', 'Harry Potter and the Philosopher''s stone', '1997-06-26');
-INSERT INTO loans (id, due_date, issue_date, number_renews, item_id, library_user_id) VALUES (10, '2022-09-12', '2022-08-15', 9, 8, 7);
+INSERT INTO loans (id, due_date, issue_date, number_renews, item_id, library_user_id) VALUES (10, '2022-09-12', '2022-08-15', 0, 8, 7);
 
 INSERT INTO users (id, email, first_name, last_name) VALUES (11,'sofia1245@gmail.com', 'sofia', 'symth');
 INSERT INTO items (id, isbn, author, media_type, title, release_year) VALUES (12, '9780340960196', 'Frank Herbert', 'BOOK', 'Dune', '1965-08-11');

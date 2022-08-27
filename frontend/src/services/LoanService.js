@@ -1,27 +1,27 @@
-import http from "../http-common";
+import axios from "axios";
 
-const LOAN_API_BASE_URL = "http://localhost:8080/api/v1/loans/";
+const LOAN_API_BASE_URL = "http://localhost:8080/api/v1/loans/all";
 
-class LoanDataService {
+class LoanService {
     getAllLoans() {
-        return http.get(LOAN_API_BASE_URL + "all");
+        return axios.get(LOAN_API_BASE_URL );
     }
 
     getLoanById(id) {
-        return http.get(  LOAN_API_BASE_URL + `${id}`);
+        return axios.get(LOAN_API_BASE_URL + `${id}`);
     }
 
     createLoan(userId, itemId) {
-        return http.put(  LOAN_API_BASE_URL + "create-new-loan", userId, itemId);
+        return axios.put(LOAN_API_BASE_URL + "create-new-loan", userId, itemId);
     }
 
     renewLoan(id) {
-        return http.put(  LOAN_API_BASE_URL + "renew-loan-with-loan-id/"  `${id}`);
+        return axios.put(LOAN_API_BASE_URL + "renew-loan-with-loan-id/"  `${id}`);
     }
 
     removeLoan(id) {
-        return http.delete(  LOAN_API_BASE_URL+ "return-loan"  `${id}`);
+        return axios.delete(LOAN_API_BASE_URL+ "return-loan"  `${id}`);
     }
 }
 
-export default new LoanDataService();
+export default new LoanService();

@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
 
-function Loan() {
-    return <div>
-        <p>
-            Loan
-        </p>
-    </div>
+import LoanComponent from './LoanComponent';
+
+function ListUsers() {
+    return (
+        <div>
+            <LoanComponent />
+        </div>
+    );
 }
 
-export default Loan;
+export default ListUsers;
