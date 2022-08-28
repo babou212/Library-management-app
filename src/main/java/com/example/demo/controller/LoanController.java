@@ -65,7 +65,7 @@ public class LoanController {
             loanService.renewLoan(id);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
-            log.error("Error executing POST request: " + ex);
+            log.error("Error executing PUT request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -73,7 +73,7 @@ public class LoanController {
     @PutMapping( "/return-loan/{id}")
     public ResponseEntity<HttpStatus> returnLoan(@PathVariable Long id) {
         try {
-            log.info("Executing DELETE request");
+            log.info("Executing PUT request");
             loanService.returnLoan(id);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {

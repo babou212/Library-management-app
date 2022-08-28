@@ -18,7 +18,7 @@ class LoanComponent extends React.Component {
     }
 
     returnLoan = (id) => {
-        LoanService.renewLoan(id).then(() => {
+        LoanService.returnLoan(id).then(() => {
                 this.setState({loans: this.state.loans.filter(loan => loan.id !== id)
                 });
             }

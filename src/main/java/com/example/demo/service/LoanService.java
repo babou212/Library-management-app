@@ -89,8 +89,9 @@ public class LoanService {
 
               if (loanRepo.findById(loanId).get().getDueDate().isAfter(currentDate)
                       || loanRepo.findById(loanId).get().getDueDate().equals(currentDate)) {
-                Loan receivedLoan = loanRepo.getReferenceById(loanId);
-                //receivedLoan.
+                Loan receivedLoan = loanRepo.findById(loanId).get();
+                receivedLoan.setReturned(true);
+                loanRepo.save(receivedLoan);
             }
     }
 }
