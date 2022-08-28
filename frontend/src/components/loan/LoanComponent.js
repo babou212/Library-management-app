@@ -45,7 +45,7 @@ class LoanComponent extends React.Component {
                                      <td> {loan.issueDate}</td>
                                      <td> {loan.dueDate}</td>
                                      <td> {loan.numRenews}</td>
-                                     <td>{}</td>   
+                                     <td> {}</td>   
                                 </tr>
                             )
                         }

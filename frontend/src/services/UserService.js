@@ -16,7 +16,8 @@ class UserService {
     }
 
     deleteUserById(id) {
-        return axios.delete(LOAN_API_BASE_URL+ "delete-user"  `${id}`);
+        const urlId = `delete-user/${id}`;
+        return axios.delete(LOAN_API_BASE_URL+ urlId);
     }
 }
 

@@ -17,6 +17,14 @@ class UserComponent extends React.Component {
         });
     }
 
+    deleteUser = (id) => {
+        UserService.deleteUserById(id).then((response) => {
+                this.setState({users: this.state.users.filter(user => user.id !== id)
+                });
+            }
+        );
+    };
+
     render (){
         return (
             <div>
@@ -42,7 +50,8 @@ class UserComponent extends React.Component {
                                      <td> {user.lastName}</td>   
                                      <td> {user.email}</td>
                                      <td> {user.loan.id}</td>
-                                     <td>{}</td>
+                                     <td> <button className="btn btn-outline-danger" 
+                                     onClick={() => {this.deleteUser(user.id)}}> Delete</button></td>
                                 </tr>
                             )
                         }
