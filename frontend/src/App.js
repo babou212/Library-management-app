@@ -5,6 +5,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import NavBar from "./NavBar";
+import Footer from "./components/footer/Footer";
 import Home from "./components/Home/Home";
 import Loan from "./components/loan/LoanComponent";
 import Item from "./components/item/Item";
@@ -23,6 +24,7 @@ function App()  {
                 <Route path="/users" element={<User />} />
             </Routes>
         </div>
+        <Footer /> 
       </>
   )
 }

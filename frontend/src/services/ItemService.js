@@ -7,12 +7,16 @@ class ItemDataService {
         return axios.get(LOAN_API_BASE_URL + "all");
     }
 
-    createNewItem(data) {
-        return axios.post(  LOAN_API_BASE_URL + "add-new-item", data);
+    getItemById(id) { 
+        return axios.get(LOAN_API_BASE_URL + "get-item/" `${id}`);
+    }
+
+    createNewItem(item) {
+        return axios.post(  LOAN_API_BASE_URL + "add-new-item", item);
     }
 
     deleteItemById(id) {
-        return axios.delete(  LOAN_API_BASE_URL+ "delete-item"  `${id}`);
+        return axios.delete(  LOAN_API_BASE_URL + "delete-item"  `${id}`);
     }
 }
 export default new ItemDataService();

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/loans")
@@ -48,10 +48,10 @@ public class LoanController {
         }
     }
 
-    @RequestMapping( "/create-new-loan/{userId}/{itemId}")
+    @PutMapping( "/create-new-loan/{userId}/{itemId}")
     public ResponseEntity<Void> createNewLoan(@PathVariable Long userId,@PathVariable Long itemId) {
         try {
-            log.info("Executing request");
+            log.info("Executing PUT request");
             loanService.issueLoan(userId, itemId);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
@@ -60,10 +60,10 @@ public class LoanController {
         }
     }
 
-    @RequestMapping( "/renew-loan-with-loan-id/{id}")
+    @PutMapping( "/renew-loan-with-loan-id/{id}")
     public ResponseEntity<Void> renewLoan(@PathVariable Long id) {
         try {
-            log.info("Executing POST request");
+            log.info("Executing PUT request");
             loanService.renewLoan(id);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
@@ -75,7 +75,7 @@ public class LoanController {
     @DeleteMapping( "/return-loan/{id}")
     public ResponseEntity<HttpStatus> returnLoan(@PathVariable Long id) {
         try {
-            log.info("Executing POST request");
+            log.info("Executing DELETE request");
             loanService.returnLoan(id);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {

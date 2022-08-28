@@ -10,12 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/users")
@@ -50,12 +48,14 @@ public class UserController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<LibraryUser> createUser(@RequestBody LibraryUser user) {
+    @PostMapping("")
+    public ResponseEntity<Void> createUser(@RequestBody LibraryUser user) {
         try {
-            LibraryUser receivedUser = userRepo.save(user);
-            return ResponseEntity.created(new URI("/users/" + receivedUser.getId())).body(receivedUser);
-        } catch (URISyntaxException ex) {
+            log.info("Executing POST request");
+            userRepo.save(user);
+            return ResponseEntity.ok().build();
+        } catch (Exception ex) {
+            log.error("Error executing POST request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -63,9 +63,11 @@ public class UserController {
     @DeleteMapping("delete-user/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         try {
+            log.info("Executing DELETE request");
             userRepo.deleteById(id);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
+            log.error("Error executing DELETE request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }

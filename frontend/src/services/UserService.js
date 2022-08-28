@@ -7,8 +7,12 @@ class UserService {
         return axios.get(LOAN_API_BASE_URL + "all");
     }
 
-    addNewUser(data) {
-        return axios.post(LOAN_API_BASE_URL + "add-new-user", data);
+    getUserById(id) {
+        return axios.get(LOAN_API_BASE_URL + "get-user/" `${id}`);
+    }
+
+    addNewUser(user) {
+        return axios.post(LOAN_API_BASE_URL + "add-new-user", user);
     }
 
     deleteUserById(id) {
