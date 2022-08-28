@@ -16,7 +16,8 @@ class ItemDataService {
     }
 
     deleteItemById(id) {
-        return axios.delete(  LOAN_API_BASE_URL + "delete-item"  `${id}`);
+        const urlId = `delete-item/${id}`;
+        return axios.delete(LOAN_API_BASE_URL+ urlId);
     }
 }
 export default new ItemDataService();

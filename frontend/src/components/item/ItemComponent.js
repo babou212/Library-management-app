@@ -17,6 +17,14 @@ class ItemComponent extends React.Component {
         });
     }
 
+    deleteItem = (id) => {
+        ItemService.deleteItemById(id).then(() => {
+                this.setState({items: this.state.items.filter(item => item.id !== id)
+                });
+            }
+        );
+    };
+
     render (){
         return (
             <div>
@@ -42,7 +50,9 @@ class ItemComponent extends React.Component {
                                      <td> {item.title}</td>   
                                      <td> {item.year}</td>
                                      <td> {item.mediaType}</td>
-                                     <td> {item.isbn}</td>   
+                                     <td> {item.isbn}</td> 
+                                     <td> <button className="btn btn-outline-danger" 
+                                     onClick={() => {this.deleteItem(item.id)}}> Delete</button></td>  
                                 </tr>
                             )
                         }
