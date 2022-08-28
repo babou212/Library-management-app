@@ -64,6 +64,9 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         try {
             log.info("Executing DELETE request");
+//            LibraryUser receivedUser = userRepo.findById(id).get();
+//            receivedUser.setLoan(null);
+//            userRepo.save(receivedUser);
             userRepo.deleteById(id);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {

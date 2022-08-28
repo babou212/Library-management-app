@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -13,12 +15,13 @@ import java.time.LocalDate;
 @Builder
 @Entity
 @Table(name = "loans")
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="libraryUser")
 @Component
 public class Loan extends BaseEntity {
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Item item;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private LibraryUser libraryUser;
 
     @Column(name = "issue_date")

@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,7 @@ import java.time.LocalDate;
 @Builder
 @Entity
 @Table(name = "items")
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 @Component
 public class Item extends BaseEntity  {
 

@@ -35,13 +35,11 @@ public class LoanController {
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody ResponseEntity<LoanDto> returnLoanById(@PathVariable Long id) {
+    public @ResponseBody ResponseEntity<Loan> returnLoanById(@PathVariable Long id) {
         try {
             log.info("Executing GET request");
-            return new ResponseEntity<>(
-                    mapStructMapper.convertLoanToDto(loanRepo.findById(id).get()),
-                    HttpStatus.OK
-            );
+            loanRepo.findById(id);
+            return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();

@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,6 @@ public class LibraryUser extends BaseEntity {
     @Column(name = "email")
     private String email;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryUser")
     private Set<Loan> loan;
 }
