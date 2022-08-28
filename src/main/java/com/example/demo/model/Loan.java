@@ -32,4 +32,7 @@ public class Loan extends BaseEntity {
 
     @Column(name = "number_renews")
     private int numRenews;
+
+    @Column(name = "returned")
+    private boolean isReturned;
 }

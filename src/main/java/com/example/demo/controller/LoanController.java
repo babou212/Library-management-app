@@ -70,7 +70,7 @@ public class LoanController {
         }
     }
 
-    @DeleteMapping( "/return-loan/{id}")
+    @PutMapping( "/return-loan/{id}")
     public ResponseEntity<HttpStatus> returnLoan(@PathVariable Long id) {
         try {
             log.info("Executing DELETE request");

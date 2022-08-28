@@ -18,7 +18,7 @@ class ItemComponent extends React.Component {
     }
 
     deleteItem = (id) => {
-        ItemService.deleteItemById(id).then((response) => {
+        ItemService.deleteItemById(id).then(() => {
                 this.setState({items: this.state.items.filter(item => item.id !== id)
                 });
             }
@@ -40,7 +40,6 @@ class ItemComponent extends React.Component {
                             <td> ISBN</td>
                         </tr>
                     </thead>
-                    if (this.state.items !== null) {
                         <tbody>
                         {
                             this.state.items.map(
@@ -58,8 +57,6 @@ class ItemComponent extends React.Component {
                             )
                         }
                     </tbody>
-                    }
-
                 </table>
             </div>
         )

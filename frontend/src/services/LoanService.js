@@ -8,19 +8,23 @@ class LoanService {
     }
 
     getLoanById(id) {
-        return axios.get(LOAN_API_BASE_URL + `${id}`);
+        const urlId = `${id}`;
+        return axios.get(LOAN_API_BASE_URL + urlId);
     }
 
     createLoan(userId, itemId) {
-        return axios.put(LOAN_API_BASE_URL + "create-new-loan", userId, itemId);
+        const urlId = "create-new-loan";
+        return axios.put(LOAN_API_BASE_URL + urlId, userId, itemId);
     }
 
     renewLoan(id) {
-        return axios.put(LOAN_API_BASE_URL + "renew-loan-with-loan-id/"  `${id}`);
+        const urlId = `renew-loan-with-loan-id/${id}`;
+        return axios.put(LOAN_API_BASE_URL + urlId);
     }
 
-    removeLoan(id) {
-        return axios.delete(LOAN_API_BASE_URL+ "return-loan"  `${id}`);
+    returnLoan(id) {
+        const urlId = `return-loan/${id}`;
+        return axios.put(LOAN_API_BASE_URL+ urlId);
     }
 }
 
