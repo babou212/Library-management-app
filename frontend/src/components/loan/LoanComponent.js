@@ -21,7 +21,8 @@ class LoanComponent extends React.Component {
         LoanService.returnLoan(id).then(() => {
                 this.setState({loans: this.state.loans.filter(loan => loan.id !== id)
                 });
-                window.location.reload(true);
+                this.componentDidMount();
+                
             }
         );
     };
