@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.DTO.LoanDto;
 import com.example.demo.model.Loan;
-import com.example.demo.mapper.MapStructMapper;
 import com.example.demo.repository.LoanRepo;
 import com.example.demo.service.LoanService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +19,6 @@ import java.util.List;
 public class LoanController {
     private final LoanRepo loanRepo;
     private final LoanService loanService;
-    private final MapStructMapper mapStructMapper;
 
     @GetMapping("/all")
     public @ResponseBody ResponseEntity<List<Loan>> getLoans() {

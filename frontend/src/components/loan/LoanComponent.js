@@ -21,8 +21,16 @@ class LoanComponent extends React.Component {
         LoanService.returnLoan(id).then(() => {
                 this.setState({loans: this.state.loans.filter(loan => loan.id !== id)
                 });
-                this.componentDidMount();
-                
+                this.componentDidMount(); 
+            }
+        );
+    };
+
+    renewLoan = (id) => {
+        LoanService.renewLoan(id).then(() => {
+                this.setState({loans: this.state.loans.filter(loan => loan.id !== id)
+                });
+                this.componentDidMount(); 
             }
         );
     };
@@ -41,7 +49,6 @@ class LoanComponent extends React.Component {
                             <td> Due Date</td>
                             <td> Number of renews</td>
                             <td> Returned</td>
-                            <td> Actions</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,9 +63,10 @@ class LoanComponent extends React.Component {
                                      <td> {loan.dueDate}</td>
                                      <td> {loan.numRenews}</td>
                                      <td> {String(loan.returned)}</td>
-                                     
                                      <td> <button className="btn btn-outline-danger" 
-                                     onClick={() => {loan.returned === false && this.returnLoan(loan.id)}}> Return</button></td>   
+                                     onClick={() => {loan.returned === false && this.returnLoan(loan.id)}}> Return</button></td>
+                                     <td> <button className="btn btn-outline-danger" 
+                                     onClick={() => {loan.numRenews < 3  &&  this.renewLoan(loan.id)}}> Renew</button></td>     
                                 </tr>
                             )
                         }
