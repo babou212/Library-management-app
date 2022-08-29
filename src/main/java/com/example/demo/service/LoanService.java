@@ -35,6 +35,7 @@ public class LoanService {
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
 
                 Loan newLoan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
+                        .isReturned(false)
                         .libraryUser(user.orElseThrow(null))
                         .item(item.orElseThrow(null)).build();
 
@@ -47,6 +48,7 @@ public class LoanService {
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
 
                 Loan newLoan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
+                        .isReturned(false)
                         .libraryUser(user.orElseThrow(null))
                         .item(item.orElseThrow(null)).build();
 
