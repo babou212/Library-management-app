@@ -32,6 +32,7 @@ public class LoanService {
 
                 LibraryUser user = userRepo.findById(userId).get();
                 Item item = itemRepo.findById(itemId).get();
+                item.setLoaned(true);
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
 
                 Loan newLoan = new Loan(item, user, issueDate, dueDate, numRenews, false);
@@ -42,6 +43,7 @@ public class LoanService {
 
                 LibraryUser user = userRepo.findById(userId).get();
                 Item item = itemRepo.findById(itemId).get();
+                item.setLoaned(true);
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
 
                 Loan newLoan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)

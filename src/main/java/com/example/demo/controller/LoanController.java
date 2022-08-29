@@ -46,9 +46,9 @@ public class LoanController {
     @PostMapping( "/create-new-loan/{userId}/{itemId}")
     public ResponseEntity<Void> createNewLoan(@PathVariable String userId, @PathVariable String itemId) {
         try {
-                log.info("Executing PUT request");
-                loanService.issueLoan(Long.valueOf(userId), Long.valueOf(itemId));
-                return ResponseEntity.ok().build();
+            log.info("Executing PUT request");
+            loanService.issueLoan(Long.valueOf(userId), Long.valueOf(itemId));
+            return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing request: " + ex);
             return ResponseEntity.internalServerError().build();
