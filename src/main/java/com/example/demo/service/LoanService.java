@@ -62,28 +62,31 @@ public class LoanService {
                 if (loanRepo.findById(loanId).get().getItem().getMediaType().equals(MediaType.BOOK)
                         && loanRepo.findById(loanId).get().getNumRenews() < 3) {
 
-                    LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
-                    int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
-                    Loan loanFromDb = loanRepo.findById(loanId).get();
+                    if (!loanRepo.findById(loanId).get().isReturned()) {
+                        LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
+                        int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
+                        Loan loanFromDb = loanRepo.findById(loanId).get();
 
-                    loanFromDb.setDueDate(dueDate);
-                    loanFromDb.setNumRenews(numRenews);
+                        loanFromDb.setDueDate(dueDate);
+                        loanFromDb.setNumRenews(numRenews);
 
-                    loanRepo.save(loanFromDb);
+                        loanRepo.save(loanFromDb);
+                    }
 
                 } else if (loanRepo.findById(loanId).get().getItem().getMediaType().equals(MediaType.MULTIMEDIA)
                         && loanRepo.findById(loanId).get().getNumRenews() < 2) {
 
-                    LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
-                    int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
-                    Loan loanFromDb = loanRepo.findById(loanId).get();
+                    if (!loanRepo.findById(loanId).get().isReturned()) {
+                        LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
+                        int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
+                        Loan loanFromDb = loanRepo.findById(loanId).get();
 
-                    loanFromDb.setDueDate(dueDate);
-                    loanFromDb.setNumRenews(numRenews);
+                        loanFromDb.setDueDate(dueDate);
+                        loanFromDb.setNumRenews(numRenews);
 
-                    loanRepo.save(loanFromDb);
+                        loanRepo.save(loanFromDb);
+                    }
                 }
-
     }
 
     public void returnLoan(Long loanId) {
