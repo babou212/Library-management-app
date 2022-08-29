@@ -32,7 +32,7 @@ function AddLoans() {
       function issueLoanHandler(event) {
         event.preventDefault();
         LoanService.createLoan(userId, itemId)
-        .then(res => console.log("Executing PUT request", res)).catch(err => console.log(err))
+        .then(res => console.log("Executing POST request", res)).catch(err => console.log(err))
     };
 }
 

@@ -18,10 +18,10 @@ import java.time.LocalDate;
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="libraryUser")
 @Component
 public class Loan extends BaseEntity {
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private Item item;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private LibraryUser libraryUser;
 
     @Column(name = "issue_date")

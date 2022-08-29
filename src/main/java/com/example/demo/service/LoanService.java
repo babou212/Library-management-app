@@ -9,7 +9,10 @@ import com.example.demo.repository.LoanRepo;
 import com.example.demo.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -27,20 +30,18 @@ public class LoanService {
         LocalDate currentDate = LocalDate.now();
         int numRenews = 0;
 
-            if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.BOOK)) {
+            if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.BOOK) &&
+                    !itemRepo.findById(itemId).get().isLoaned()) {
 
                 LibraryUser user = userRepo.findById(userId).get();
                 Item item = itemRepo.findById(itemId).get();
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
 
-                Loan newLoan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
-                        .isReturned(false)
-                        .libraryUser(user)
-                        .item(item).build();
+                Loan newLoan = new Loan(item, user, issueDate, dueDate, numRenews, false);
 
                 loanRepo.save(newLoan);
-
-            } else if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.MULTIMEDIA)) {
+            } else if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.MULTIMEDIA) &&
+                    !itemRepo.findById(itemId).get().isLoaned()) {
 
                 LibraryUser user = userRepo.findById(userId).get();
                 Item item = itemRepo.findById(itemId).get();

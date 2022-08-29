@@ -24,7 +24,8 @@ public class LoanController {
     public @ResponseBody ResponseEntity<List<Loan>> getLoans() {
         try {
             log.info("Executing GET request");
-            return ResponseEntity.ok(loanRepo.findAll());
+             List<Loan> listOfLoans = loanRepo.findAll();
+            return ResponseEntity.ok(listOfLoans);
         } catch (Exception ex){
             log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
@@ -35,20 +36,20 @@ public class LoanController {
     public @ResponseBody ResponseEntity<Loan> returnLoanById(@PathVariable Long id) {
         try {
             log.info("Executing GET request");
-            loanRepo.findById(id);
-            return ResponseEntity.ok().build();
+
+            return ResponseEntity.ok(loanRepo.findById(id).get());
         } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }
 
-    @PutMapping( "/create-new-loan/{userId}/{itemId}")
+    @PostMapping( "/create-new-loan/{userId}/{itemId}")
     public ResponseEntity<Void> createNewLoan(@PathVariable String userId, @PathVariable String itemId) {
         try {
-            log.info("Executing PUT request");
-            loanService.issueLoan(Long.valueOf(userId), Long.valueOf(itemId));
-            return ResponseEntity.ok().build();
+                log.info("Executing PUT request");
+                loanService.issueLoan(Long.valueOf(userId), Long.valueOf(itemId));
+                return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing request: " + ex);
             return ResponseEntity.internalServerError().build();

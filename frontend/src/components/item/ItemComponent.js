@@ -38,6 +38,7 @@ class ItemComponent extends React.Component {
                             <td> Release Year</td>
                             <td> Media Type</td>
                             <td> ISBN</td>
+                            <td> On Loan</td>
                         </tr>
                     </thead>
                         <tbody>
@@ -51,6 +52,8 @@ class ItemComponent extends React.Component {
                                      <td> {item.year}</td>
                                      <td> {item.mediaType}</td>
                                      <td> {item.isbn}</td> 
+                                     <td> {String(item.loaned)}</td>
+
                                      <td> <button className="btn btn-outline-danger" 
                                      onClick={() => {this.deleteItem(item.id)}}> Delete</button></td>  
                                 </tr>

@@ -34,4 +34,7 @@ public class Item extends BaseEntity  {
 
     @Column(name = "ISBN")
     private String ISBN;
+
+    @Column(name = "is_loaned")
+    private boolean isLoaned;
 }
