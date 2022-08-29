@@ -13,8 +13,8 @@ class LoanService {
     }
 
     createLoan(userId, itemId) {
-        const urlId = "create-new-loan";
-        return axios.put(LOAN_API_BASE_URL + urlId, userId, itemId);
+        const urlId = `create-new-loan/${userId}/${itemId}`;
+        return axios.put(LOAN_API_BASE_URL + urlId);
     }
 
     renewLoan(id) {

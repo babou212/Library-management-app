@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -30,27 +29,27 @@ public class LoanService {
 
             if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.BOOK)) {
 
-                Optional<LibraryUser> user = userRepo.findById(userId);
-                Optional<Item> item = itemRepo.findById(itemId);
+                LibraryUser user = userRepo.findById(userId).get();
+                Item item = itemRepo.findById(itemId).get();
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
 
                 Loan newLoan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
                         .isReturned(false)
-                        .libraryUser(user.orElseThrow(null))
-                        .item(item.orElseThrow(null)).build();
+                        .libraryUser(user)
+                        .item(item).build();
 
                 loanRepo.save(newLoan);
 
             } else if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.MULTIMEDIA)) {
 
-                Optional<LibraryUser> user = userRepo.findById(userId);
-                Optional<Item> item = itemRepo.findById(itemId);
+                LibraryUser user = userRepo.findById(userId).get();
+                Item item = itemRepo.findById(itemId).get();
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
 
                 Loan newLoan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
                         .isReturned(false)
-                        .libraryUser(user.orElseThrow(null))
-                        .item(item.orElseThrow(null)).build();
+                        .libraryUser(user)
+                        .item(item).build();
 
                 loanRepo.save(newLoan);
             }

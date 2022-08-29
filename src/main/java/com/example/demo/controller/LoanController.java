@@ -44,10 +44,10 @@ public class LoanController {
     }
 
     @PutMapping( "/create-new-loan/{userId}/{itemId}")
-    public ResponseEntity<Void> createNewLoan(@PathVariable Long userId,@PathVariable Long itemId) {
+    public ResponseEntity<Void> createNewLoan(@PathVariable String userId, @PathVariable String itemId) {
         try {
             log.info("Executing PUT request");
-            loanService.issueLoan(userId, itemId);
+            loanService.issueLoan(Long.valueOf(userId), Long.valueOf(itemId));
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing request: " + ex);

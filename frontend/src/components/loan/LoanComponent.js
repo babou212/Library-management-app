@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 import LoanService from "../../services/LoanService";
 
@@ -35,10 +37,15 @@ class LoanComponent extends React.Component {
         );
     };
 
-    render (){
+    render () {
         return (
             <div>
                 <h1 className = "text-center"> Loans List</h1>
+                
+                <Link to={'/create-loan'}>
+                     <Button variant="primary"> Issue Loan </Button>
+                </Link>
+                
                 <table className = "table table-striped">
                     <thead>
                         <tr>
@@ -63,10 +70,13 @@ class LoanComponent extends React.Component {
                                      <td> {loan.dueDate}</td>
                                      <td> {loan.numRenews}</td>
                                      <td> {String(loan.returned)}</td>
+                                     
                                      <td> <button className="btn btn-outline-danger" 
                                      onClick={() => {loan.returned === false && this.returnLoan(loan.id)}}> Return</button></td>
+                                     
                                      <td> <button className="btn btn-outline-danger" 
-                                     onClick={() => {loan.numRenews < 3  &&  this.renewLoan(loan.id)}}> Renew</button></td>     
+                                     onClick={() => {loan.numRenews < 3  &&  this.renewLoan(loan.id)}}> Renew</button></td>
+                                         
                                 </tr>
                             )
                         }

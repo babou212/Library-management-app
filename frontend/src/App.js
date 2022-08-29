@@ -10,6 +10,7 @@ import Home from "./components/Home/Home";
 import Loan from "./components/loan/LoanComponent";
 import Item from "./components/item/Item";
 import User from "./components/user/User";
+import AddLoans from "./components/loan/AddLoan";
 
 function App()  {
 
@@ -22,6 +23,7 @@ function App()  {
                 <Route path="/loans" element={<Loan />} />
                 <Route path="/items" element={<Item />} />
                 <Route path="/users" element={<User />} />
+                <Route path="/create-loan" element={<AddLoans/>} />   
             </Routes>
         </div>
         <Footer /> 
