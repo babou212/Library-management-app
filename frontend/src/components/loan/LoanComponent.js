@@ -43,7 +43,7 @@ class LoanComponent extends React.Component {
                 <h1 className = "text-center"> Loans List</h1>
                 
                 <Link to={'/create-loan'}>
-                     <Button variant="primary"> Issue Loan </Button>
+                     <Button variant="success"> Issue Loan </Button>
                 </Link>
                 
                 <table className = "table table-striped">

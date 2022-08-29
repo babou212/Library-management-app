@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/loans")
@@ -36,7 +36,6 @@ public class LoanController {
     public @ResponseBody ResponseEntity<Loan> returnLoanById(@PathVariable Long id) {
         try {
             log.info("Executing GET request");
-
             return ResponseEntity.ok(loanRepo.findById(id).get());
         } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);

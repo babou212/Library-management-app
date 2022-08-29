@@ -15,5 +15,8 @@ INSERT INTO items (id, isbn, author, media_type, title, release_year, is_loaned)
 INSERT INTO loans (id, due_date, issue_date, number_renews, item_id, library_user_id, returned) VALUES (16, '2022-09-12', '2022-08-15', 0, 15, 14, false);
 
 INSERT INTO users (id, email, first_name, last_name) VALUES (1,'tim_smith123@yahoo.com', 'Tim', 'Smith');
-INSERT INTO items (id, isbn, author, media_type, title, release_year, is_loaned) VALUES (2, '9780003700947', 'Oscar Wilde', 'BOOK', 'The Canter-ville Ghost', '2008-08-01', true);
+INSERT INTO items (id, isbn, author, media_type, title, release_year, is_loaned) VALUES (2, '9780003700947', 'Oscar Wilde', 'BOOK', 'The Canter-ville Ghost', '1887-02-23', true);
 INSERT INTO loans (id, due_date, issue_date, number_renews, item_id, library_user_id, returned) VALUES (3, '2022-09-16', '2022-08-18', 0, 2, 1, false);
+
+INSERT INTO items (id, isbn, author, media_type, title, release_year, is_loaned) VALUES (22, '9780003400987', 'Bram Stoker', 'BOOK', 'Dracula', '1897-05-26', false);
+INSERT INTO users (id, email, first_name, last_name) VALUES (20,'tim_smith123@yahoo.com', 'Jim', 'Morrison');

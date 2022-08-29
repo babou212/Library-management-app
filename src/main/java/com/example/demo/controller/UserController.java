@@ -48,7 +48,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("")
+    @PostMapping("create-new-user")
     public ResponseEntity<Void> createUser(@RequestBody LibraryUser user) {
         try {
             log.info("Executing POST request");
