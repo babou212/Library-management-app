@@ -61,11 +61,13 @@ public class ItemController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<Void> createItem(@RequestBody Item item) {
+    @PostMapping("add-new-item/{author}/{title}/{release}/{mediaType}/{isbn}")
+    public ResponseEntity<?> createItem(@PathVariable String author, @PathVariable String title,
+            @PathVariable String release, @PathVariable String mediaType, @PathVariable String isbn) {
+
         try {
             log.info("Executing POST request");
-            itemRepo.save(item);
+            itemService.createNewItem(author, title, release, mediaType, isbn);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing POST request:" + ex);

@@ -11,6 +11,7 @@ import Loan from "./components/loan/LoanComponent";
 import Item from "./components/item/Item";
 import User from "./components/user/User";
 import AddLoans from "./components/loan/AddLoan";
+import AddItem from "./components/item/AddItem";
 
 function App()  {
 
@@ -23,7 +24,8 @@ function App()  {
                 <Route path="/loans" element={<Loan />} />
                 <Route path="/items" element={<Item />} />
                 <Route path="/users" element={<User />} />
-                <Route path="/create-loan" element={<AddLoans/>} />   
+                <Route path="/create-loan" element={<AddLoans/>} />
+                <Route path="/create-item" element={<AddItem/>} />     
             </Routes>
         </div>
         <Footer /> 

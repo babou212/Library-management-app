@@ -11,8 +11,9 @@ class ItemDataService {
         return axios.get(LOAN_API_BASE_URL + "get-item/" `${id}`);
     }
 
-    createNewItem(item) {
-        return axios.post(  LOAN_API_BASE_URL + "add-new-item", item);
+    createNewItem(author, title, release, mediaType, isbn) {
+        const url = `add-new-item/${author}/${title}/${release}/${mediaType}/${isbn}`;
+        return axios.post( LOAN_API_BASE_URL + url);
     }
 
     deleteItemById(id) {

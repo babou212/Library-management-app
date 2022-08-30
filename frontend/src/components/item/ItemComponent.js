@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 import ItemService from "../../services/ItemService";
 
@@ -29,6 +31,11 @@ class ItemComponent extends React.Component {
         return (
             <div>
                 <h1 className = "text-center"> Items List</h1>
+
+                <Link to={'/create-item'}>
+                     <Button variant="success"> Add Item </Button>
+                </Link>
+
                 <table className = "table table-striped">
                     <thead>
                         <tr>
