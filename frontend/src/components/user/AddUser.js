@@ -46,9 +46,13 @@ function AddLoans() {
 
       function createNewUserHandler(event) {
         event.preventDefault();
+        setFirstName("");
+        setLastName("");
+        setEmail("");
 
         UserService.addNewUser(firstName, lastName, email)
         .then(res => console.log("Executing POST request", res)).catch(err => console.log(err))
+        
     };
 }
 

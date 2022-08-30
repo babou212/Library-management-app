@@ -34,6 +34,10 @@ function AddLoans() {
 
       function issueLoanHandler(event) {
         event.preventDefault();
+        setUserId("");
+        SetItemId("");
+
+
         LoanService.createLoan(userId, itemId)
         .then(res => console.log("Executing POST request", res)).catch(err => console.log(err))
     };

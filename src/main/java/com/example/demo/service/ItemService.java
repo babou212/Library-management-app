@@ -4,6 +4,7 @@ import com.example.demo.model.Item;
 import com.example.demo.model.MediaType;
 import com.example.demo.repository.ItemRepo;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.ISBN;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public class ItemService {
     }
 
     public void createNewItem(String author, String title,
-                             String release, String mediaType, String isbn) {
+                             String release, String mediaType, @ISBN String isbn) {
 
         String media = mediaType.toUpperCase();
 

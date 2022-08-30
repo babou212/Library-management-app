@@ -64,6 +64,11 @@ function AddLoans() {
 
       function createNewItemHandler(event) {
         event.preventDefault();
+        setAuthor("");
+        setTitle("");
+        setRelease("");
+        setMediaType("");
+        setIsbn("");
 
         ItemService.createNewItem(author, title, release, mediaType, isbn)
         .then(res => console.log("Executing POST request", res)).catch(err => console.log(err))

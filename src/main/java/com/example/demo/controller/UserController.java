@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Email;
 import java.util.HashSet;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class UserController {
 
     @PostMapping("create-new-user/{firstName}/{lastName}/{email}")
     public ResponseEntity<HttpStatus> createUser(@PathVariable String firstName, @PathVariable String lastName,
-                                           @PathVariable String email) {
+                                           @PathVariable @Email String email) {
         try {
             log.info("Executing POST request");
             LibraryUser receivedUser = new LibraryUser(firstName, lastName, email, new HashSet<>());
