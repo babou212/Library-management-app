@@ -8,11 +8,13 @@ class UserService {
     }
 
     getUserById(id) {
-        return axios.get(LOAN_API_BASE_URL + "get-user/" `${id}`);
+        const url = `get-user/${id}`;
+        return axios.get(LOAN_API_BASE_URL + url);
     }
 
-    addNewUser(user) {
-        return axios.post(LOAN_API_BASE_URL + "add-new-user", user);
+    addNewUser(firstName, lastName, email) {
+        const url = `create-new-user/${firstName}/${lastName}/${email}`;
+        return axios.post(LOAN_API_BASE_URL + url);
     }
 
     deleteUserById(id) {

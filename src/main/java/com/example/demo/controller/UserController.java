@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Slf4j
@@ -49,11 +50,13 @@ public class UserController {
         }
     }
 
-    @PostMapping("create-new-user")
-    public ResponseEntity<Void> createUser(@RequestBody LibraryUser user) {
+    @PostMapping("create-new-user/{firstName}/{lastName}/{email}")
+    public ResponseEntity<HttpStatus> createUser(@PathVariable String firstName, @PathVariable String lastName,
+                                           @PathVariable String email) {
         try {
             log.info("Executing POST request");
-            userRepo.save(user);
+            LibraryUser receivedUser = new LibraryUser(firstName, lastName, email, new HashSet<>());
+            userRepo.save(receivedUser);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing POST request: " + ex);

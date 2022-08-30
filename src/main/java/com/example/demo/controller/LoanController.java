@@ -44,7 +44,7 @@ public class LoanController {
     }
 
     @PostMapping( "/create-new-loan/{userId}/{itemId}")
-    public ResponseEntity<Void> createNewLoan(@PathVariable String userId, @PathVariable String itemId) {
+    public ResponseEntity<HttpStatus> createNewLoan(@PathVariable String userId, @PathVariable String itemId) {
         try {
             log.info("Executing POST request");
             loanService.issueLoan(Long.valueOf(userId), Long.valueOf(itemId));
@@ -56,7 +56,7 @@ public class LoanController {
     }
 
     @PutMapping( "/renew-loan-with-loan-id/{id}")
-    public ResponseEntity<Void> renewLoan(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> renewLoan(@PathVariable Long id) {
         try {
             log.info("Executing PUT request");
             loanService.renewLoan(id);

@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 import UserService from "../../services/UserService";
 
@@ -21,6 +23,11 @@ class UserComponent extends React.Component {
         return (
             <div>
                 <h1 className = "text-center"> User List</h1>
+
+                <Link to={'/add-user'}>
+                     <Button variant="success"> Add user </Button>
+                </Link>
+
                 <table className = "table table-striped">
                     <thead>
                         <tr>
