@@ -1,6 +1,5 @@
 # Library Management Application
 
-Currently Still Under Development 
 
 A simple fullstack web Application for library admins to manage users and loans of items
 
@@ -8,7 +7,7 @@ A simple fullstack web Application for library admins to manage users and loans 
 
 ## Tech Stack
 
-**Client:** React, Bootstrap
+**Client:** React, React-bootstrap
 
 **Server:** Spring Boot, mySQL
 
@@ -19,9 +18,9 @@ A simple fullstack web Application for library admins to manage users and loans 
 
 ## Features
 
-- Ability to add and remove users
-- Ability to renew/ return loans and create new loans
-- Ability to add new items
+- Ability to add users
+- Ability to renew/ return loans and create new loans using userId and itemId's
+- Ability to add new items and delete items
 
 
 ## Feedback
