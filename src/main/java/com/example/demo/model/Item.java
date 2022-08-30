@@ -3,7 +3,6 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,7 +14,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "items")
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
-@Component
 public class Item extends BaseEntity  {
 
     @Column(name = "author")

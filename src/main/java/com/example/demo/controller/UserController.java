@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("api/v1/users")
 public class UserController {
     private final UserRepo userRepo;
+
     private final MapStructMapper mapStructMapper;
 
     @GetMapping("/all")
@@ -56,18 +57,6 @@ public class UserController {
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Error executing POST request: " + ex);
-            return ResponseEntity.internalServerError().build();
-        }
-    }
-
-    @DeleteMapping("delete-user/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        try {
-            log.info("Executing DELETE request");
-            userRepo.deleteById(id);
-            return ResponseEntity.ok().build();
-        } catch (Exception ex) {
-            log.error("Error executing DELETE request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }

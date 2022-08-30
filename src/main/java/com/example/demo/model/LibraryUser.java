@@ -1,9 +1,9 @@
 package com.example.demo.model;
 
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -12,7 +12,6 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-@Component
 public class LibraryUser extends BaseEntity {
     @Column(name = "first_name")
     private String firstName;
@@ -23,6 +22,6 @@ public class LibraryUser extends BaseEntity {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryUser")
-    private Set<Loan> loan;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "libraryUser")
+    private Set<Loan> loan = new HashSet<>();
 }
