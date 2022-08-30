@@ -19,4 +19,4 @@ INSERT INTO items (id, isbn, author, media_type, title, release_year, is_loaned)
 INSERT INTO loans (id, due_date, issue_date, number_renews, item_id, library_user_id, returned) VALUES (3, '2022-09-16', '2022-08-18', 0, 2, 1, false);
 
 INSERT INTO items (id, isbn, author, media_type, title, release_year, is_loaned) VALUES (22, '9780003400987', 'Bram Stoker', 'BOOK', 'Dracula', '1897-05-26', false);
-INSERT INTO users (id, email, first_name, last_name) VALUES (20,'tim_smith123@yahoo.com', 'Jim', 'Morrison');
+INSERT INTO users (id, email, first_name, last_name) VALUES (20,'jim_fire@yahoo.com', 'Jim', 'Morrison');

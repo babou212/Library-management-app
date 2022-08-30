@@ -55,7 +55,7 @@ class ItemComponent extends React.Component {
                                      <td> {String(item.loaned)}</td>
 
                                      <td> <button className="btn btn-outline-danger" 
-                                     onClick={() => {this.deleteItem(item.id)}}> Delete</button></td>  
+                                     onClick={() => {item.loaned === false && this.deleteItem(item.id)}}> Delete</button></td>  
                                 </tr>
                             )
                         }

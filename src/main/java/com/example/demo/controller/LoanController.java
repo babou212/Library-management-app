@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/loans")
@@ -46,11 +46,11 @@ public class LoanController {
     @PostMapping( "/create-new-loan/{userId}/{itemId}")
     public ResponseEntity<Void> createNewLoan(@PathVariable String userId, @PathVariable String itemId) {
         try {
-            log.info("Executing PUT request");
+            log.info("Executing POST request");
             loanService.issueLoan(Long.valueOf(userId), Long.valueOf(itemId));
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
-            log.error("Error executing request: " + ex);
+            log.error("Error executing POST request: " + ex);
             return ResponseEntity.internalServerError().build();
         }
     }

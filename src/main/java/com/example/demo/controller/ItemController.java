@@ -4,6 +4,7 @@ import com.example.demo.DTO.ItemDto;
 import com.example.demo.mapper.MapStructMapper;
 import com.example.demo.model.Item;
 import com.example.demo.repository.ItemRepo;
+import com.example.demo.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,8 @@ import java.util.List;
 @RequestMapping("api/v1/items")
 public class ItemController {
     private final ItemRepo itemRepo;
+
+    private final ItemService itemService;
     private final MapStructMapper mapStructMapper;
 
     @GetMapping("/all")
@@ -50,7 +53,7 @@ public class ItemController {
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         try {
             log.info("Executing DELETE request");
-            itemRepo.deleteById(id);
+            itemService.deleteItem(id);
             return ResponseEntity.ok().build();
         } catch (Exception ex) {
             log.error("Executing DELETE request: " + ex);

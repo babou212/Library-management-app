@@ -46,10 +46,7 @@ public class LoanService {
                 item.setLoaned(true);
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
 
-                Loan newLoan = Loan.builder().issueDate(issueDate).dueDate(dueDate).numRenews(numRenews)
-                        .isReturned(false)
-                        .libraryUser(user)
-                        .item(item).build();
+                Loan newLoan = new Loan(item, user, issueDate, dueDate, numRenews, false);
 
                 loanRepo.save(newLoan);
             }
@@ -93,7 +90,9 @@ public class LoanService {
 
               if (loanRepo.findById(loanId).get().getDueDate().isAfter(currentDate)
                       || loanRepo.findById(loanId).get().getDueDate().equals(currentDate)) {
-                Loan receivedLoan = loanRepo.findById(loanId).get();
+
+                  Loan receivedLoan = loanRepo.findById(loanId).get();
+                  receivedLoan.getItem().setLoaned(false);
                 receivedLoan.setReturned(true);
                 loanRepo.save(receivedLoan);
             }

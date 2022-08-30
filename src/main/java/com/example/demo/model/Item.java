@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "items")
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)

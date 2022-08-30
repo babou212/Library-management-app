@@ -19,12 +19,6 @@ function AddLoans() {
             onChange={(event) => setUserId(event.target.value)}
             />
 
-            {/* <input
-              type="text"
-              value={userId}
-              placeholder="User Id"
-              onChange={(event) => setUserId(event.target.value)}
-            /> */}
             <Form.Label></Form.Label>
             <Form.Control  
             type="text"
@@ -32,15 +26,6 @@ function AddLoans() {
             placeholder="Item Id"
             onChange={(event) => SetItemId(event.target.value)}
             />  
-            
-
-{/* 
-            <input
-              type="text"
-              value={itemId}
-              placeholder="Item Id"
-              onChange={(event) => SetItemId(event.target.value)}
-            /> */}
             
             <Button  variant="success" type="submit">Submit</Button>
         </Form.Group>
