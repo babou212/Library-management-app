@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import dateFormat from "dateformat";
 
 import LoanService from "../../services/LoanService";
 
@@ -66,8 +67,8 @@ class LoanComponent extends React.Component {
                                      <td> {loan.id}</td>   
                                      <td> {loan.item.id}</td>   
                                      <td> {loan.libraryUser.id}</td>   
-                                     <td> {loan.issueDate}</td>
-                                     <td> {loan.dueDate}</td>
+                                     <td> {dateFormat(loan.issueDate, "mmm d, yyyy")}</td>
+                                     <td> {dateFormat(loan.dueDate, "mmm d, yyyy")}</td>
                                      <td> {loan.numRenews}</td>
                                      <td> {String(loan.returned)}</td>
                                      

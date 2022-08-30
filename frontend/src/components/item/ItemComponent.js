@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import dateFormat from "dateformat";
 
 import ItemService from "../../services/ItemService";
 
@@ -56,7 +57,7 @@ class ItemComponent extends React.Component {
                                      <td> {item.id}</td>   
                                      <td> {item.author}</td>   
                                      <td> {item.title}</td>   
-                                     <td> {item.year}</td>
+                                     <td> {dateFormat(item.year, "mmm d, yyyy")}</td>
                                      <td> {item.mediaType}</td>
                                      <td> {item.isbn}</td> 
                                      <td> {String(item.loaned)}</td>
