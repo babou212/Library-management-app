@@ -24,8 +24,10 @@ public class LoanController {
     public @ResponseBody ResponseEntity<List<Loan>> getLoans() {
         try {
             log.info("Executing GET request");
-             List<Loan> listOfLoans = loanRepo.findAll();
-            return ResponseEntity.ok(listOfLoans);
+            return new ResponseEntity<>(
+                    loanRepo.findAll(),
+                    HttpStatus.OK
+            );
         } catch (Exception ex){
             log.error("Error executing GET request: " + ex);
             return ResponseEntity.internalServerError().build();

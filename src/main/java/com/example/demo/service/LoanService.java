@@ -37,7 +37,12 @@ public class LoanService {
 
                 Loan newLoan = new Loan(item, user, issueDate, dueDate, numRenews, false);
 
+                user.getLoan().add(newLoan);
+
+                userRepo.flush();
+                userRepo.save(user);
                 loanRepo.save(newLoan);
+
             } else if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.MULTIMEDIA) &&
                     !itemRepo.findById(itemId).get().isLoaned()) {
 
@@ -48,6 +53,7 @@ public class LoanService {
 
                 Loan newLoan = new Loan(item, user, issueDate, dueDate, numRenews, false);
 
+                user.getLoan().add(newLoan);
                 loanRepo.save(newLoan);
             }
         }
@@ -94,7 +100,14 @@ public class LoanService {
                   Loan receivedLoan = loanRepo.findById(loanId).get();
                   receivedLoan.getItem().setLoaned(false);
                 receivedLoan.setReturned(true);
+
+                LibraryUser user = receivedLoan.getLibraryUser();
+                user.setLoan(null);
+
                 loanRepo.save(receivedLoan);
+
+                userRepo.flush();
+                userRepo.save(user);
             }
     }
 }

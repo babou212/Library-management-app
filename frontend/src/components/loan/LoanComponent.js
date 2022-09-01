@@ -52,7 +52,6 @@ class LoanComponent extends React.Component {
                         <tr>
                             <td> Loan Id</td>
                             <td> Item Id</td>
-                            <td> User Id</td>
                             <td> Issue Date</td>
                             <td> Due Date</td>
                             <td> Number of renews</td>
@@ -66,7 +65,6 @@ class LoanComponent extends React.Component {
                                 <tr key = {loan.id}>
                                      <td> {loan.id}</td>   
                                      <td> {loan.item.id}</td>   
-                                     <td> {loan.libraryUser.id}</td>   
                                      <td> {dateFormat(loan.issueDate, "mmm d, yyyy")}</td>
                                      <td> {dateFormat(loan.dueDate, "mmm d, yyyy")}</td>
                                      <td> {loan.numRenews}</td>

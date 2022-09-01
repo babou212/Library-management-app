@@ -14,10 +14,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class LibraryUser extends BaseEntity {
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -26,6 +27,9 @@ public class LibraryUser extends BaseEntity {
 
     @Column(name = "email")
     private String email;
+
+//    @OneToOne
+//    private Address address;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "libraryUser")
     private Set<Loan> loan = new HashSet<>();

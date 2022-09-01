@@ -15,6 +15,10 @@ A simple fullstack web Application for library admins to manage users and loans 
 
 **Security:**  CodeQl
 
+## Model
+
+![](readme.resources/jhipster-jdl.png)
+
 
 ## Features
 
