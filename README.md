@@ -27,12 +27,12 @@ A simple fullstack web Application for library admins to manage users and loans 
 - Ability to add new items and delete items
 
 
-## How to run
-
-# Versions 
+## Versions 
 
 - React 18.2.0
 - OpenJdk 17.0.4.1
+
+## How to run
 
 - You must have npm along with the latest LTS version of node installed
 
