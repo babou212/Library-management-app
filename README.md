@@ -22,9 +22,10 @@ A simple fullstack web Application for library admins to manage users and loans 
 
 ## Features
 
-- Ability to add users
+- Ability to add/ view users details 
+- Ability to view all loans
 - Ability to renew/ return loans and create new loans using userId and itemId's
-- Ability to add new items and delete items
+- Ability to add new items and delete items if they are not cuurently being loaned
 
 
 ## Versions 
