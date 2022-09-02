@@ -30,6 +30,7 @@ A simple fullstack web Application for library admins to manage users and loans 
 ## Versions 
 
 - React 18.2.0
+- Spring Boot 2.7.2
 - OpenJdk 17.0.4.1
 
 ## How to run
