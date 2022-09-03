@@ -7,6 +7,7 @@ import com.example.demo.repository.ItemRepo;
 import com.example.demo.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.validator.constraints.ISBN;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,8 +63,8 @@ public class ItemController {
     }
 
     @PostMapping("add-new-item/{author}/{title}/{release}/{mediaType}/{isbn}")
-    public ResponseEntity<?> createItem(@PathVariable String author, @PathVariable String title,
-            @PathVariable String release, @PathVariable String mediaType, @PathVariable String isbn) {
+    public ResponseEntity<HttpStatus> createItem(@PathVariable String author, @PathVariable String title,
+            @PathVariable String release, @PathVariable String mediaType,@PathVariable @ISBN String isbn) {
 
         try {
             log.info("Executing POST request");

@@ -35,6 +35,7 @@ class UserComponent extends React.Component {
                             <td> First Name</td>
                             <td> Last Name</td>
                             <td> Email</td>
+                            <td> Details</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,6 +47,11 @@ class UserComponent extends React.Component {
                                      <td> {user.firstName}</td>   
                                      <td> {user.lastName}</td>   
                                      <td> {user.email}</td>
+                                     <td> 
+                                     <Link to={'/view-user'}>
+                                        <Button variant="success"> View User</Button>
+                                     </Link>
+                                     </td>
                                 </tr>
                             )
                         }

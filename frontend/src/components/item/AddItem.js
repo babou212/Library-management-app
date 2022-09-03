@@ -31,11 +31,8 @@ function AddLoans() {
             />  
 
             <Form.Label></Form.Label>
-            <Form.Text>
-                Please enter in format yyyy-mm-dd
-            </Form.Text>
             <Form.Control  
-            type="text"
+            type="date"
             value={release}
             placeholder="Release"
             onChange={(event) => setRelease(event.target.value)}

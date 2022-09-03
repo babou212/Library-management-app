@@ -36,13 +36,15 @@ public class LoanController {
 
     @GetMapping("/{id}")
     public @ResponseBody ResponseEntity<Loan> returnLoanById(@PathVariable Long id) {
-        try {
-            log.info("Executing GET request");
-            return ResponseEntity.ok(loanRepo.findById(id).get());
-        } catch (Exception ex) {
-            log.error("Error executing GET request: " + ex);
-            return ResponseEntity.internalServerError().build();
-        }
+        if (loanRepo.findById(id).isPresent()) {
+            try {
+                log.info("Executing GET request");
+                return ResponseEntity.ok(loanRepo.findById(id).get());
+            } catch (Exception ex) {
+                log.error("Error executing GET request: " + ex);
+                return ResponseEntity.internalServerError().build();
+            }
+        } return ResponseEntity.internalServerError().build();
     }
 
     @PostMapping( "/create-new-loan/{userId}/{itemId}")

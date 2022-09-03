@@ -15,8 +15,10 @@ public class ItemService {
     private final ItemRepo itemRepo;
 
     public void deleteItem(Long itemId) {
-        if (!itemRepo.findById(itemId).get().isLoaned()) {
-            itemRepo.deleteById(itemId);
+        if (itemRepo.findById(itemId).isPresent()) {
+            if (!itemRepo.findById(itemId).get().isLoaned()) {
+                itemRepo.deleteById(itemId);
+            }
         }
     }
 

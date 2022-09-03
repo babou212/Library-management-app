@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import NavBar from "./NavBar";
@@ -13,6 +12,7 @@ import User from "./components/user/User";
 import AddLoans from "./components/loan/AddLoan";
 import AddItem from "./components/item/AddItem";
 import AddUser from "./components/user/AddUser";
+import ViewUser from "./components/user/ViewUser";
 
 function App()  {
 
@@ -27,7 +27,8 @@ function App()  {
                 <Route path="/users" element={<User />} />
                 <Route path="/create-loan" element={<AddLoans/>} />
                 <Route path="/create-item" element={<AddItem/>} /> 
-                <Route path="/add-user" element={<AddUser/>} />       
+                <Route path="/add-user" element={<AddUser/>} />
+                <Route path="/view-user" element={<ViewUser/>} />        
             </Routes>
         </div>
         <Footer /> 
