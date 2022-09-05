@@ -31,7 +31,7 @@ class ItemComponent extends React.Component {
     render (){
         return (
             <div>
-                <h1 className = "text-center"> Items List</h1>
+                <h1 className = "text-center"> Items</h1>
 
                 <Link to={'/create-item'}>
                      <Button variant="success"> Add Item </Button>

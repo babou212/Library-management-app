@@ -5,6 +5,7 @@ import com.example.demo.model.MediaType;
 import com.example.demo.repository.ItemRepo;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.ISBN;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,7 +18,15 @@ public class ItemService {
     public void deleteItem(Long itemId) {
         if (itemRepo.findById(itemId).isPresent()) {
             if (!itemRepo.findById(itemId).get().isLoaned()) {
-                itemRepo.deleteById(itemId);
+                Item item = itemRepo.findById(itemId).get();
+                item.setAuthor(null);
+                item.setTitle(null);
+                item.setISBN(null);
+                item.setYear(LocalDate.EPOCH);
+                item.setMediaType(null);
+                item.setLoaned(false);
+
+                itemRepo.save(item);
             }
         }
     }

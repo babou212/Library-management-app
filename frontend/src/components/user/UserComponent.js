@@ -22,7 +22,7 @@ class UserComponent extends React.Component {
     render (){
         return (
             <div>
-                <h1 className = "text-center"> User List</h1>
+                <h1 className = "text-center"> Users</h1>
 
                 <Link to={'/add-user'}>
                      <Button variant="success"> Add user </Button>

@@ -41,7 +41,7 @@ class LoanComponent extends React.Component {
     render () {
         return (
             <div>
-                <h1 className = "text-center"> Loans List</h1>
+                <h1 className = "text-center"> Loans</h1>
                 
                 <Link to={'/create-loan'}>
                      <Button variant="success"> Issue Loan </Button>

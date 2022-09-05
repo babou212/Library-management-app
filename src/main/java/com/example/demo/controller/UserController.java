@@ -33,7 +33,7 @@ public class UserController {
             ;
         } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
-            return ResponseEntity.internalServerError().build();
+            return ResponseEntity.notFound().build();
         }
     }
 
@@ -47,7 +47,7 @@ public class UserController {
             );
         } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
-            return ResponseEntity.internalServerError().build();
+            return ResponseEntity.notFound().build();
         }
     }
 

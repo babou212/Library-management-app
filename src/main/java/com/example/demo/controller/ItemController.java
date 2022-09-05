@@ -32,40 +32,43 @@ public class ItemController {
             return ResponseEntity.ok(itemRepo.findAll());
         } catch (Exception ex) {
             log.error("Error executing GET request: " + ex);
-            return ResponseEntity.internalServerError().build();
+            return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("get-item/{id}")
     public @ResponseBody ResponseEntity<ItemDto> returnItemById(@PathVariable Long id) {
-        try {
-            log.info("Executing GET request");
-            return new ResponseEntity<>(
-                    mapStructMapper.convertItemToDto(itemRepo.findById(id).get()),
-                    HttpStatus.OK
-            );
-        } catch (Exception ex) {
-            log.error("Error executing GET request: " + ex);
-            return ResponseEntity.internalServerError().build();
-        }
+        if (id != null && itemRepo.findById(id).isPresent()) {
+            try {
+                log.info("Executing GET request");
+                return new ResponseEntity<>(
+                        mapStructMapper.convertItemToDto(itemRepo.findById(id).get()),
+                        HttpStatus.OK
+                );
+            } catch (Exception ex) {
+                log.error("Error executing GET request: " + ex);
+                return ResponseEntity.internalServerError().build();
+            }
+        } return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("delete-item/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
-        try {
-            log.info("Executing DELETE request");
-            itemService.deleteItem(id);
-            return ResponseEntity.ok().build();
-        } catch (Exception ex) {
-            log.error("Executing DELETE request: " + ex);
-            return ResponseEntity.internalServerError().build();
-        }
+        if (id != null && itemRepo.findById(id).isPresent()) {
+            try {
+                log.info("Executing DELETE request");
+                itemService.deleteItem(id);
+                return ResponseEntity.ok().build();
+            } catch (Exception ex) {
+                log.error("Executing DELETE request: " + ex);
+                return ResponseEntity.internalServerError().build();
+            }
+        } return ResponseEntity.notFound().build();
     }
 
     @PostMapping("add-new-item/{author}/{title}/{release}/{mediaType}/{isbn}")
     public ResponseEntity<HttpStatus> createItem(@PathVariable String author, @PathVariable String title,
             @PathVariable String release, @PathVariable String mediaType,@PathVariable @ISBN String isbn) {
-
         try {
             log.info("Executing POST request");
             itemService.createNewItem(author, title, release, mediaType, isbn);

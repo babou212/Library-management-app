@@ -29,92 +29,87 @@ public class LoanService {
         LocalDate currentDate = LocalDate.now();
         int numRenews = 0;
 
-        if (userRepo.findById(userId).isPresent() && itemRepo.findById(itemId).isPresent()) {
+            LibraryUser filteredUser = userRepo.findAll().stream().filter(user -> user.getId().equals(userId))
+                    .reduce((a, b) -> {
+                        throw new IllegalStateException("Multiple elements: " + a + ", " + b);
+                    }).get();
 
-            if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.BOOK) &&
-                    !itemRepo.findById(itemId).get().isLoaned()) {
+            Item filteredItem = itemRepo.findAll().stream().filter(item -> item.getId().equals(itemId))
+                    .reduce((a, b) -> {
+                        throw new IllegalStateException("Multiple elements: " + a + ", " + b);
+                    }).get();
 
-                LibraryUser user = userRepo.findById(userId).get();
-                Item item = itemRepo.findById(itemId).get();
-                item.setLoaned(true);
+            if (filteredItem.getMediaType().equals(MediaType.BOOK) &&
+                    !filteredItem.isLoaned()) {
+
+                filteredItem.setLoaned(true);
                 LocalDate dueDate = currentDate.plus(4, ChronoUnit.WEEKS);
 
-                Loan newLoan = new Loan(item, user, issueDate, dueDate, numRenews, false);
+                Loan newLoan = new Loan(filteredItem, filteredUser, issueDate, dueDate, numRenews, false);
 
-                user.getLoan().add(newLoan);
+                filteredUser.getLoan().add(newLoan);
                 loanRepo.save(newLoan);
 
-            } else if (itemRepo.findById(itemId).get().getMediaType().equals(MediaType.MULTIMEDIA) &&
-                    !itemRepo.findById(itemId).get().isLoaned()) {
+            } else if (filteredItem.getMediaType().equals(MediaType.MULTIMEDIA) &&
+                    !filteredItem.isLoaned()) {
 
-                LibraryUser user = userRepo.findById(userId).get();
-                Item item = itemRepo.findById(itemId).get();
-                item.setLoaned(true);
+                filteredItem.setLoaned(true);
                 LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
 
-                Loan newLoan = new Loan(item, user, issueDate, dueDate, numRenews, false);
+                Loan newLoan = new Loan(filteredItem, filteredUser, issueDate, dueDate, numRenews, false);
 
-                user.getLoan().add(newLoan);
+                filteredUser.getLoan().add(newLoan);
                 loanRepo.save(newLoan);
             }
-        } else {
-            log.warn("No user or item exists for specified id values");
         }
-    }
 
     public void renewLoan(Long loanId) {
         LocalDate currentDate = LocalDate.now();
 
-        if (loanRepo.findById(loanId).isPresent()) {
+        Loan filteredLoan = loanRepo.findAll().stream().filter(loan -> loan.getId().equals(loanId))
+                .reduce((a, b) -> {
+                    throw new IllegalStateException("Multiple elements: " + a + ", " + b);
+                }).get();
 
-            if (loanRepo.findById(loanId).get().getItem().getMediaType().equals(MediaType.BOOK)
-                    && loanRepo.findById(loanId).get().getNumRenews() < 3) {
+            if (filteredLoan.getItem().getMediaType().equals(MediaType.BOOK)
+                    && filteredLoan.getNumRenews() < 3 && !filteredLoan.isReturned()) {
 
-                if (!loanRepo.findById(loanId).get().isReturned()) {
                     LocalDate dueDate = currentDate.plus(2, ChronoUnit.WEEKS);
-                    int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
-                    Loan loanFromDb = loanRepo.findById(loanId).get();
+                    int numRenews = filteredLoan.getNumRenews() + 1;
 
-                    loanFromDb.setDueDate(dueDate);
-                    loanFromDb.setNumRenews(numRenews);
+                    filteredLoan.setDueDate(dueDate);
+                    filteredLoan.setNumRenews(numRenews);
 
-                    loanRepo.save(loanFromDb);
-                }
+                    loanRepo.save(filteredLoan);
 
-            } else if (loanRepo.findById(loanId).get().getItem().getMediaType().equals(MediaType.MULTIMEDIA)
-                    && loanRepo.findById(loanId).get().getNumRenews() < 2) {
+            } else if (filteredLoan.getItem().getMediaType().equals(MediaType.MULTIMEDIA)
+                    && filteredLoan.getNumRenews() < 2 && !filteredLoan.isReturned()) {
 
-                if (!loanRepo.findById(loanId).get().isReturned()) {
                     LocalDate dueDate = currentDate.plus(1, ChronoUnit.WEEKS);
-                    int numRenews = loanRepo.findById(loanId).get().getNumRenews() + 1;
-                    Loan loanFromDb = loanRepo.findById(loanId).get();
+                    int numRenews = filteredLoan.getNumRenews() + 1;
 
-                    loanFromDb.setDueDate(dueDate);
-                    loanFromDb.setNumRenews(numRenews);
+                    filteredLoan.setDueDate(dueDate);
+                    filteredLoan.setNumRenews(numRenews);
 
-                    loanRepo.save(loanFromDb);
+                    loanRepo.save(filteredLoan);
                 }
             }
-        } else {
-            log.warn("No loan exists for specified id value");
-        }
-    }
 
     public void returnLoan(Long loanId) {
         LocalDate currentDate = LocalDate.now();
 
-        if (loanRepo.findById(loanId).isPresent()) {
-            if (loanRepo.findById(loanId).get().getDueDate().isAfter(currentDate)
-                    || loanRepo.findById(loanId).get().getDueDate().equals(currentDate)) {
+        Loan filteredLoan = loanRepo.findAll().stream().filter(loan -> loan.getId().equals(loanId))
+                .reduce((a, b) -> {
+                    throw new IllegalStateException("Multiple elements: " + a + ", " + b);
+                }).get();
 
-                Loan receivedLoan = loanRepo.findById(loanId).get();
-                receivedLoan.getItem().setLoaned(false);
-                receivedLoan.setReturned(true);
+            if (filteredLoan.getDueDate().isAfter(currentDate)
+                    || filteredLoan.getDueDate().equals(currentDate)) {
 
-                loanRepo.save(receivedLoan);
+                filteredLoan.getItem().setLoaned(false);
+                filteredLoan.setReturned(true);
+
+                loanRepo.save(filteredLoan);
             }
-        } else {
-            log.warn("No loan exists for specified id value");
         }
-    }
 }

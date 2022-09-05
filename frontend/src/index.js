@@ -6,9 +6,6 @@ import App from "./App";
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
-import * as serviceWorker from "./serviceWorker";
-
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
@@ -17,5 +14,3 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 )
-
-serviceWorker.unregister();
