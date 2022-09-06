@@ -58,7 +58,7 @@ public class ItemController {
     @DeleteMapping("delete-item/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         Item filteredItem = itemRepo.findAll().stream().filter(item -> item.getId().equals(id)).reduce((a, b) -> {
-            throw new IllegalStateException("Multiple eliments found: " + a + b);
+            throw new IllegalStateException("Multiple elements found: " + a + b);
         }).get();
 
         if (userRepo.findAll().contains(filteredItem)) {
