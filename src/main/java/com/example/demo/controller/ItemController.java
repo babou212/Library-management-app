@@ -4,6 +4,7 @@ import com.example.demo.DTO.ItemDto;
 import com.example.demo.mapper.MapStructMapper;
 import com.example.demo.model.Item;
 import com.example.demo.repository.ItemRepo;
+import com.example.demo.repository.UserRepo;
 import com.example.demo.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,8 @@ import java.util.List;
 @RequestMapping("api/v1/items")
 public class ItemController {
     private final ItemRepo itemRepo;
+
+    private final UserRepo userRepo;
 
     private final ItemService itemService;
     private final MapStructMapper mapStructMapper;
@@ -54,16 +57,21 @@ public class ItemController {
 
     @DeleteMapping("delete-item/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
-        if (id != null && itemRepo.findById(id).isPresent()) {
+        Item filteredItem = itemRepo.findAll().stream().filter(item -> item.getId().equals(id)).reduce((a, b) -> {
+            throw new IllegalStateException("Multiple eliments found: " + a + b);
+        }).get();
+
+        if (userRepo.findAll().contains(filteredItem)) {
             try {
                 log.info("Executing DELETE request");
                 itemService.deleteItem(id);
                 return ResponseEntity.ok().build();
+                //  }
             } catch (Exception ex) {
                 log.error("Executing DELETE request: " + ex);
                 return ResponseEntity.internalServerError().build();
             }
-        } return ResponseEntity.notFound().build();
+        } return ResponseEntity.ok().build();
     }
 
     @PostMapping("add-new-item/{author}/{title}/{release}/{mediaType}/{isbn}")

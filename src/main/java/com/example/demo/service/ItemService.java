@@ -5,7 +5,6 @@ import com.example.demo.model.MediaType;
 import com.example.demo.repository.ItemRepo;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.ISBN;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

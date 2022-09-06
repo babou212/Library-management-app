@@ -36,7 +36,7 @@ public class LoanController {
 
     @GetMapping("/{id}")
     public @ResponseBody ResponseEntity<Loan> returnLoanById(@PathVariable Long id) {
-        if (id != null &&loanRepo.findById(id).isPresent()) {
+        if (id != null && loanRepo.findById(id).isPresent()) {
             try {
                 log.info("Executing GET request");
                 return ResponseEntity.ok(loanRepo.findById(id).get());
