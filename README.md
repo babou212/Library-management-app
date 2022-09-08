@@ -9,7 +9,7 @@ A simple fullstack web Application for library admins to manage users and loans 
 
 **Client:** React, React-bootstrap
 
-**Server:** Spring Boot, mySQL
+**Server:** Spring Boot, mySQL, h2db
 
 **Build Tool:** Maven 
 
@@ -39,6 +39,7 @@ A simple fullstack web Application for library admins to manage users and loans 
 - You must have npm along with the latest LTS version of node installed
 
 - Clone repo and cd into frontend module and run command " npm i " then run " npm start " to run the client  
+- Make sure to set the environment to dev to use the embedded h2 database
 - Then run maven to download dependencies and then build and run the java application either within the ide or as a 
   jar file (demo-0.0.1-SNAPSHOT.jar) located within the target directory. 
 

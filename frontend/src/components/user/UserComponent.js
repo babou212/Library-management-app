@@ -48,7 +48,7 @@ class UserComponent extends React.Component {
                                      <td> {user.lastName}</td>   
                                      <td> {user.email}</td>
                                      <td> 
-                                     <Link to={'/view-user'}>
+                                     <Link to='/view-user' state={{ user }}>
                                         <Button variant="success"> View User</Button>
                                      </Link>
                                      </td>

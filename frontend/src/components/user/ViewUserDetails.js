@@ -7,8 +7,9 @@ import UserDetails from "./UserDetails";
 function viewUserDetails() {
     return (
         <div>
-            <UserDetails />
-            <UserAddress />
+            <h1 className = "text-center">User details</h1>
+            {/* <UserDetails />
+            <UserAddress /> */}
             <UserLoans />
         </div>
     );
