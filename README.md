@@ -13,7 +13,7 @@ A simple fullstack web Application for library admins to manage users and loans 
 
 **Build Tool:** Maven 
 
-**Security:**  CodeQl
+**Security:**  Spring Security/ JWT
 
 ## Model
 
